@@ -16,10 +16,11 @@ datasets. UITOTO addresses the challenges associated with finding,
 testing, and visualizing reliable Diagnostic Molecular Combinations
 (DMCs), especially those arising from high-throughput taxonomy. The
 package also features a user-friendly Shiny App that can be accessed
-online or locally in RStudio. UITOTO implements a new algorithm for
-building optimal DMCs. Additionally, it enables the identification of
-unknown sequences, whether aligned or unaligned, utilizing DMCs (this
-option is also helpful in evaluating the reliability of the DMCs through
+online (<https://atorresgalvis.shinyapps.io/MolecularDiagnoses/>) or
+locally in RStudio. UITOTO implements a new algorithm for building
+optimal DMCs. Additionally, it enables the identification of unknown
+sequences, whether aligned or unaligned, utilizing DMCs (this option is
+also helpful in evaluating the reliability of the DMCs through
 cross-validation). The Shiny App allows customizable production of
 publication-quality DMC comparisons and visualizations.
 
@@ -27,15 +28,15 @@ publication-quality DMC comparisons and visualizations.
 
 You may need to complete a pre-installation process to ensure your
 environment is configured with the prerequisites required for UITOTO
-installation. The list of packages from CRAN required by UITOTO could be
-provided by typing in R:
+installation. The complete list of packages from CRAN required by UITOTO
+could be provided by typing in R:
 
 ``` r
 packages <- c("dplyr", "ggplot2", "readr", "seqinr", "shiny", "shinyjs", "shinyWidgets")
 ```
 
-Afterward, you can install packages that have not yet been installed all
-at once with:
+Afterward, you can install the packages that have not yet been installed
+all at once with:
 
 ``` r
 installed_packages <- packages %in% rownames(installed.packages())
@@ -56,16 +57,25 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install(version = "3.18")
 ```
 
-After that, you can install Biostrings and DECIPHER by using:
+After that, you can install Biostrings:
 
 ``` r
 BiocManager::install("Biostrings")
 BiocManager::install("DECIPHER")
 ```
 
+As well as the DECIPHER package:
+
+``` r
+BiocManager::install("DECIPHER")
+```
+
+Now you should be ready to install UITOTO. However, it is advisable to
+restart the RStudio session or simply close and reopen the program.
+
 ## Installation
 
-You can install the development version of UITOTO like so:
+Now that everything is ready, you have to ways for installing UITOTO.
 
 ``` r
 # FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
