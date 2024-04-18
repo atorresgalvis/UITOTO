@@ -98,7 +98,7 @@ Now that everything is ready, you have to ways for installing UITOTO.
   runUITOTO()
   ```
   <p align="center">
-  <img src="https://github.com/atorresgalvis/UITOTO/tree/main/inst/app/www/img/UITOTOCover.PNG" alt="alt text" width="100%" />
+  <img src="https://github.com/atorresgalvis/UITOTO/tree/main/inst/app/www/img/UITOTOCover.PNG" alt="alt text" width="100%">
   Fig. 1. UITOTO Shiny app home page.
   </p>
 
