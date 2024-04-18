@@ -1,0 +1,31 @@
+Type: Package
+Package: UITOTO
+Version: 1.0.0
+Title: User InTerface for Optimal molecular diagnoses in high-throughput TaxOnomy
+Authors@R: c(
+	person("Ambrosio", "Torres", , "atorresgalvis@gmail.com", role = c("aut", "cre")),
+	person("Leshon", "Lee", email = "leshon.l@nus.edu.sg", role = "ctb"),
+	person("Amrita", "Srivathsan", email = "asrivathsan@gmail.com", role = "ctb"),
+	person("Rudolf", "Meier", email = "rudolf.meier@mfn.berlin", role = "ctb"))
+Author: Ambrosio Torres [aut, cre] <atorresgalvis@gmail.com>
+	Leshon Lee  [ctb],
+	Amrita Srivathsan [ctb],
+	Rudolf Meier [ctb]
+BugReports/Maintainer: Ambrosio Torres <atorresgalvis@gmail.com>
+Description: UITOTO is an R package designed for deriving, testing, and visualizing Diagnostic Molecular Combinations (DMCs). The package features a shiny app (from which its name is derived) that can be executed either locally or online (please visit https://atorresgalvis.shinyapps.io/MolecularDiagnoses/). Additionally, users can utilize the functions included in UITOTO via various command-line interfaces available for the R Statistical Software (e.g., RStudio).
+Depends:
+	R (>= 4.2)
+Imports:
+	BiocManager (>= 1.30.22),
+	Biostrings (>= 2.70.2),
+	DECIPHER (>= 2.30.0),
+	dplyr (>= 1.1.4),
+	ggplot2 (>= 3.4.0),
+	readr (>= 2.1.5),
+	seqinr (>= 4.2-36),
+	shiny (>= 1.8.0),
+	shinyjs (>= 2.1.0),
+	shinyWidgets (>= 0.8.2)
+License: GPL (>=3)
+URL: https://github.com/atorresgalvis/UITOTO
+Encoding: UTF-8
