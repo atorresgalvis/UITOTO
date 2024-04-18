@@ -100,7 +100,12 @@ Now that everything is ready, you have to ways for installing UITOTO.
 <p align="center">
 <img src="https://github.com/atorresgalvis/UITOTO/tree/main/inst/app/www/img/UITOTOCover.PNG" alt="alt text" width="840" height="352">
 </p>
-
+  
+  <p align="center">
+  <img src="https://github.com/atorresgalvis/UITOTO/tree/main/inst/app/www/img/UITOTOCover.PNG" alt="alt text" width="100%">
+  Fig. 1. UITOTO Shiny app home page.
+  </p>
+  
 - This is a basic example which shows you how to solve a common problem:
 
 ``` r
