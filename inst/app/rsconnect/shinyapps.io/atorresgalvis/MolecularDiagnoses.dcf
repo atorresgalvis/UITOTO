@@ -1,0 +1,11 @@
+name: MolecularDiagnoses
+title: MolecularDiagnoses
+username:
+account: atorresgalvis
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8488910
+bundleId: 8509625
+url: https://atorresgalvis.shinyapps.io/MolecularDiagnoses/
+asMultiple: FALSE
+asStatic: FALSE

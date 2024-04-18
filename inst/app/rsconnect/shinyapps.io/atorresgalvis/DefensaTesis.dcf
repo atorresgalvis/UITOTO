@@ -1,0 +1,11 @@
+name: DefensaTesis
+title: DefensaTesis
+username:
+account: atorresgalvis
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7058444
+bundleId: 7600171
+url: https://atorresgalvis.shinyapps.io/DefensaTesis/
+asMultiple: FALSE
+asStatic: FALSE
