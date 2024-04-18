@@ -4,6 +4,8 @@
 # UITOTO
 
 <!-- badges: start -->
+
+[![Version-Number](https://img.shields.io/github/r-package/v/atorresgalvis/UITOTO?label=UITOTO%20(Dev))](https://github.com/atorresgalvis/UITOTO)
 <!-- badges: end -->
 
 The development of integrative taxonomy has facilitated the discovery
@@ -97,6 +99,7 @@ Now that everything is ready, you have to ways for installing UITOTO.
   #And then run the UITOTO shiny app normally
   runUITOTO()
   ```
+
   <div class="figure">
 
   <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/UITOTOCover.PNG" alt="**Fig. 1.** UITOTO Shiny app home page." width="100%" />
@@ -105,7 +108,7 @@ Now that everything is ready, you have to ways for installing UITOTO.
   </p>
 
   </div>
-  
+
 - This is a basic example which shows you how to solve a common problem:
 
 ``` r
