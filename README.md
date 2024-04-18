@@ -100,7 +100,7 @@ Now that everything is ready, you have to ways for installing UITOTO.
 
   <div class="figure">
 
-  <img src="[https://github.com/atorresgalvis/UITOTO/tree/main/inst/app/www/img/UITOTOCover.png]" alt="**Fig. 1.** UITOTO Shiny app home page." width="100%" />
+  <img src="https://github.com/atorresgalvis/UITOTO/tree/main/inst/app/www/img/UITOTOCover.png" alt="**Fig. 1.** UITOTO Shiny app home page." width="100%" />
   <p class="caption">
   Fig. 1. UITOTO Shiny app home page.
   </p>
