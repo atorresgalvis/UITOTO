@@ -105,10 +105,6 @@ Now that everything is ready, you have to ways for installing UITOTO.
   Fig. 1. UITOTO Shiny app home page.
   </p>
 
-<p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig5.png" alt="alt text" width="825" height="478">
-</p>
-
   </div>
 
 - This is a basic example which shows you how to solve a common problem:
