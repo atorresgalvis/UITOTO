@@ -85,7 +85,7 @@ package. You can install the released version of
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("JaseZiv/worldfootballR")
+devtools::install_github("atorresgalvis/UITOTO")
 ```
 
 Then, you should load the package into your work session:
