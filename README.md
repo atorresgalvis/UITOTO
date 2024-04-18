@@ -82,7 +82,7 @@ Now that everything is ready, you have to ways for installing UITOTO.
 
 ## Examples
 
-- Running the UITOTO Shiny app
+- Running the UITOTO Shiny app locally
 
   ``` r
   runUITOTO()
@@ -97,6 +97,15 @@ Now that everything is ready, you have to ways for installing UITOTO.
   #And then run the UITOTO shiny app normally
   runUITOTO()
   ```
+
+  <div class="figure">
+
+  <img src="inst/app/www/img/UITOTOCover.png" alt="**Fig. 1.** UITOTO Shiny app home page." width="100%" />
+  <p class="caption">
+  Fig. 1. UITOTO Shiny app home page.
+  </p>
+
+  </div>
 
 - This is a basic example which shows you how to solve a common problem:
 
