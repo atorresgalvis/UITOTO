@@ -14,12 +14,12 @@ diagnoses in published descriptions of new species are still uncommon.
 This could be attributed to i) the absence of standardized pipelines to
 accommodate molecular data to the bionomenclature codes requirements;
 and ii) the lack of software that can effectively handle large sequence
-datasets. UITOTO addresses the challenges associated with finding,
+datasets. **`UITOTO`** addresses the challenges associated with finding,
 testing, and visualizing reliable Diagnostic Molecular Combinations
 (DMCs), especially those arising from high-throughput taxonomy. The
 package also features a user-friendly Shiny App that can be accessed
 online (<https://atorresgalvis.shinyapps.io/MolecularDiagnoses/>) or
-locally in RStudio. UITOTO implements a new algorithm for building
+locally in RStudio. **`UITOTO`** implements a new algorithm for building
 optimal DMCs. Additionally, it enables the identification of unknown
 sequences, whether aligned or unaligned, utilizing DMCs (this option is
 also helpful in evaluating the reliability of the DMCs through
@@ -29,9 +29,9 @@ publication-quality DMC comparisons and visualizations.
 ## Pre-Installation
 
 You may need to complete a pre-installation process to ensure your
-environment is configured with the prerequisites required for UITOTO
-installation. The complete list of packages from CRAN required by UITOTO
-could be provided by typing in R:
+environment is configured with the prerequisites required for
+**`UITOTO`** installation. The complete list of packages from CRAN
+required by **`UITOTO`** could be provided by typing in R:
 
 ``` r
 packages <- c("dplyr", "ggplot2", "readr", "seqinr", "shiny", "shinyjs", "shinyWidgets")
@@ -47,10 +47,11 @@ if (any(installed_packages == FALSE)) {
 }
 ```
 
-As UITOTO uses some packages from Bioconductor (BiocManager, Biostrings,
-and DECIPHER), it is highly recommended to follow the instructions in
-<https://www.bioconductor.org/install/>. BiocManager is used for
-managing Bioconductor resources, so to get Bioconductor you should use:
+As **`UITOTO`** uses some packages from Bioconductor (BiocManager,
+Biostrings, and DECIPHER), it is highly recommended to follow the
+instructions in <https://www.bioconductor.org/install/>. BiocManager is
+used for managing Bioconductor resources, so to get Bioconductor you
+should use:
 
 ``` r
 # Updated to 17/04/2024.
@@ -71,20 +72,31 @@ As well as the DECIPHER package:
 BiocManager::install("DECIPHER")
 ```
 
-Now you should be ready to install UITOTO. However, it is advisable to
-restart the RStudio session or simply close and reopen the program.
+Now you should be ready to install **`UITOTO`**. However, it is
+advisable to restart the RStudio session or simply close and reopen the
+program.
 
 ## Installation
 
-Now that everything is ready, you have to ways for installing UITOTO.
+Now that everything is ready, you have to ways for installing the
+package. You can install the released version of
+[**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) from
+[GitHub](https://github.com/) with:
 
 ``` r
-# ....
+# install.packages("devtools")
+devtools::install_github("JaseZiv/worldfootballR")
+```
+
+Then, you should load the package into your work session:
+
+``` r
+library(UITOTO)
 ```
 
 ## Examples
 
-- Running the UITOTO Shiny app locally
+- Running the **`UITOTO`** Shiny app locally
 
   ``` r
   runUITOTO()
@@ -92,7 +104,8 @@ Now that everything is ready, you have to ways for installing UITOTO.
 
   **IMPORTANT:** By default, users of Shiny apps can only upload files
   up to 5 MB. You can increase this limit by setting the option before
-  executing the UITOTO shiny app. For example, to allow up to 12 MB use:
+  executing the **`UITOTO`** shiny app. For example, to allow up to 12
+  MB use:
 
   ``` r
   options(shiny.maxRequestSize = 12 * 1024^2)
