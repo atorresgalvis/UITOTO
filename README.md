@@ -22,7 +22,7 @@ addresses the challenges associated with finding, testing, and
 visualizing reliable Diagnostic Molecular Combinations (DMCs),
 especially those arising from high-throughput taxonomy. The package also
 features a user-friendly Shiny App that can be accessed online
-(<https://atorresgalvis.shinyapps.io/MolecularDiagnoses/>) or locally in
+[online](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) or locally in
 RStudio. [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
 implements a new algorithm for building optimal DMCs. Additionally, it
 enables the identification of unknown sequences, whether aligned or
