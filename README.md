@@ -177,3 +177,35 @@ library(UITOTO)
   <p class="caption">
   Module 'Find DMCs' of the UITOTO Shiny app.
   </p>
+
+  The format and conventions of the input files used by
+  [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) are quite
+  simple. Just provide a single column csv file with the list of
+  entities (*e.g.*, species, genera, OTUs) you wish to diagnose:
+
+  ``` r
+  Megaselia_fengae
+  Megaselia_oliverleei
+  Megaselia_singaporensis
+  Megaselia
+  ```
+
+  The `OpDMC` function reads each one of the rows of the previous file
+  as a character/string vector and selects those sequences from the
+  fasta file that have the string in its header. So, it doesn’t matter
+  the format of the header of your sequence as long as it contains the
+  recognition pattern/string. For example, the fasta file could look
+  like this::
+
+  ``` r
+  >ZRCBDP0359666_Senph04Megaselia_oliverleei_holotype
+  -tt-tcgtcatctattgcacatatcggctatgctgttgatttagcaattttctcccttcacttggccggaattttttttattttaggagcagtaaatttttttactacaattattggtatacgctcatcaggaatctcattcgaccgaatgcctttatttgtaaaatacgtaggaattaccgcccttttacttcttttat--------gtattagccggagctatcacaatattattaacagatcgaaattttaatacatcatttttcgaccctgcaggaggaggagatccccttttatatca----------
+  >Megaselia_fengae
+  tttctcgtcatctattgcacatatcggctatgctgttgatttagcaattttctcccttcacttggccggaattttttttattttaggagcagtaaatttttttactacaattattggtatacgctcatcaggaatctcattcgaccgaatgcctttatttgtaaaatacgtaggaattaccgcccttttacttcttttatcgtattagccggagctatcacaatattattaacagatcgaaattttaatacatcatttttcgaccctgcaggaggaggagatccccttttatatca-----------------   
+  >ZRCBDP0364918_LPU09_PU14_Pulau-Ubin_19Apr2018|Megaselia_singaporensis
+  cggagctatcacaatattatt---a--attg-g--ta-acg-tc--tca-c-g-aat-ct--tt-atttgtaaaatacg-taggaattaccg-cccttt-tacttcttttatcgtattagccggagctatcacaatattattaacagatcgaaattttaatacatcatttttcgaccctgcaggaggaggagatccccttttatatcaatctattgcacatatcggctatgctgttgatttagcaattttctcccttcacttgatctattgcacatatcggctatgctgttgatttagcaattttctcccttc
+  ```
+
+- 🧬 Identifying unknown –aligned and unaligned– sequences using DMCs
+
+  …
