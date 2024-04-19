@@ -5,12 +5,12 @@
   <div class="figure">
   <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/UITOTOprime.PNG" alt="" width="70%" />
   </div>
+  
 <!-- badges: start -->
 [![Version-Number](https://img.shields.io/github/r-package/v/atorresgalvis/UITOTO?label=UITOTO%20(Dev))](https://github.com/atorresgalvis/UITOTO)
 <!-- badges: end -->
-</p>
 
-#
+</p>
 
 The development of integrative taxonomy has facilitated the discovery
 and description of thousands of new species. However, proper molecular
