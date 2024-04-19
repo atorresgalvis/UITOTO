@@ -1,15 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-
-  <div class="figure">
-
-  <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/UITOTOCover.PNG" alt="**Fig. 1.** UITOTO Shiny app home page." width="100%" />
-  <p class="caption">
-  Fig. 1. UITOTO Shiny app home page.
-  </p>
-
-  </div>
+# UITOTO
 
 <!-- badges: start -->
 
@@ -126,6 +118,15 @@ library(UITOTO)
   #And then run the UITOTO shiny app normally
   runUITOTO()
   ```
+
+  <div class="figure">
+
+  <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/UITOTOCover.PNG" alt="**Fig. 1.** UITOTO Shiny app home page." width="100%" />
+  <p class="caption">
+  Fig. 1. UITOTO Shiny app home page.
+  </p>
+
+  </div>
 
 - This is a basic example which shows you how to solve a common problem:
 
