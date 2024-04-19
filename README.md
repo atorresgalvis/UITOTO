@@ -30,7 +30,7 @@ high-throughput taxonomy. The package also features a user-friendly
 [online](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) or
 locally in [RStudio](https://posit.co/products/open-source/rstudio/).
 
-## Pre-Installation
+## 🧰 Pre-Installation
 
 You may need to complete a pre-installation process to ensure your
 environment is configured with the prerequisites required for
@@ -88,7 +88,7 @@ Now you should be ready to install
 advisable to restart the RStudio session or simply close and reopen the
 program.
 
-## Installation
+## 💾 Installation
 
 Now that everything is ready, you have to ways for installing the
 package. You can install the released version of
