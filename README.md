@@ -98,7 +98,7 @@ package.
   devtools::install_github("atorresgalvis/UITOTO")
   ```
 
-2.  Additionally, you can download the source package (e.g., the
+2.  Additionally, you can download the source package (*e.g.*, the
   folder UITOTO_1.0.0.tar.gz) and install it using mouse-only navigation 🖱
   in [RStudio](https://posit.co/products/open-source/rstudio/):
 
