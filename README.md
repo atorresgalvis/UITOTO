@@ -20,25 +20,13 @@
 
 
 
-The development of integrative taxonomy has facilitated the discovery
-and description of thousands of new species. However, proper molecular
-diagnoses in published descriptions of new species are still uncommon.
-This could be attributed to i) the absence of standardized pipelines to
-accommodate molecular data to the bionomenclature codes requirements;
-and ii) the lack of software that can effectively handle large sequence
-datasets. [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
+The [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) [R](https://www.r-project.org/) package
 addresses the challenges associated with finding, testing, and
 visualizing reliable Diagnostic Molecular Combinations (DMCs),
 especially those arising from high-throughput taxonomy. The package also
-features a user-friendly Shiny App that can be accessed online
+features a user-friendly [Shiny](https://shiny.posit.co/) App that can be accessed online
 [online](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) or locally in
-RStudio. [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
-implements a new algorithm for building optimal DMCs. Additionally, it
-enables the identification of unknown sequences, whether aligned or
-unaligned, utilizing DMCs (this option is also helpful in evaluating the
-reliability of the DMCs through cross-validation). The Shiny App allows
-customizable production of publication-quality DMC comparisons and
-visualizations.
+[RStudio](https://posit.co/products/open-source/rstudio/).
 
 ## Pre-Installation
 
@@ -64,10 +52,10 @@ if (any(installed_packages == FALSE)) {
 ```
 
 As [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) uses some
-packages from Bioconductor (BiocManager, Biostrings, and DECIPHER), it
+packages from [Bioconductor](https://www.bioconductor.org) (Biostrings and DECIPHER), it
 is highly recommended to follow the instructions in
-<https://www.bioconductor.org/install/>. BiocManager is used for
-managing Bioconductor resources, so to get Bioconductor you should use:
+<https://www.bioconductor.org/install/>. The BiocManager package is used for
+managing [Bioconductor](https://www.bioconductor.org) resources, so to get it you should use:
 
 ``` r
 # Updated to 17/04/2024.
@@ -76,13 +64,13 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install(version = "3.18")
 ```
 
-After that, you can install Biostrings:
+After that, you can install [Biostrings](https://bioconductor.org/packages/release/bioc/html/Biostrings.html):
 
 ``` r
 BiocManager::install("Biostrings")
 ```
 
-As well as the DECIPHER package:
+As well as the [DECIPHER](https://www.bioconductor.org/packages/release/bioc/html/DECIPHER.html) package:
 
 ``` r
 BiocManager::install("DECIPHER")
@@ -120,7 +108,7 @@ library(UITOTO)
   runUITOTO()
   ```
 
-  **IMPORTANT:** By default, users of Shiny apps can only upload files
+  **IMPORTANT:** By default, users of [Shiny](https://shiny.posit.co/) apps can only upload files
   up to 5 MB. You can increase this limit by setting the option before
   executing the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
   shiny app. For example, to allow up to 12 MB use:
