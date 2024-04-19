@@ -2,15 +2,14 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p align="center">
-  <div class="figure">
-  <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/UITOTOprime.PNG" alt="" width="70%" />
-  </div>
+<a href="https://atorresgalvis.shinyapps.io/MolecularDiagnoses/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/UITOTOprime.PNG" alt="Jina logo: Build multimodal AI services via cloud native technologies · Model Serving · Generative AI · Neural Search · Cloud Native" width="70%"></a>
+</p>
   
 <!-- badges: start -->
+<p align=center>
 [![Version-Number](https://img.shields.io/github/r-package/v/atorresgalvis/UITOTO?label=UITOTO%20(Dev))](https://github.com/atorresgalvis/UITOTO)
-<!-- badges: end -->
-
 </p>
+<!-- badges: end -->
 
 The development of integrative taxonomy has facilitated the discovery
 and description of thousands of new species. However, proper molecular
