@@ -115,7 +115,7 @@ library(UITOTO)
   runUITOTO()
   ```
 
-  **IMPORTANT:** By default, users of [Shiny](https://shiny.posit.co/)
+  ⚠️ **IMPORTANT:** By default, users of [Shiny](https://shiny.posit.co/)
   apps can only upload files up to 5 MB. You can increase this limit by
   setting the option before executing the
   [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) shiny app. For
