@@ -53,7 +53,7 @@ if (any(installed_packages == FALSE)) {
 
 As [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) uses some
 packages from [Bioconductor](https://www.bioconductor.org) (Biostrings and DECIPHER), it
-is highly recommended to follow the instructions in
+is highly recommended to follow the instructions included in
 <https://www.bioconductor.org/install/>. The BiocManager package is used for
 managing [Bioconductor](https://www.bioconductor.org) resources, so to get it you should use:
 
