@@ -35,7 +35,7 @@ environment is configured with the prerequisites required for
 [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) installation.
 The complete list of packages from [CRAN](https://cran.r-project.org/) required by
 [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) could be
-provided by typing in R:
+provided by typing in [R](https://www.r-project.org/):
 
 ``` r
 packages <- c("dplyr", "ggplot2", "readr", "seqinr", "shiny", "shinyjs", "shinyWidgets")
