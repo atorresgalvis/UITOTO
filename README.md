@@ -6,9 +6,11 @@
 </p>
   
 <!-- badges: start -->
+
 <p align=center>
 [![Version-Number](https://img.shields.io/github/r-package/v/atorresgalvis/UITOTO?label=UITOTO%20(Dev))](https://github.com/atorresgalvis/UITOTO)
 </p>
+
 <!-- badges: end -->
 
 The development of integrative taxonomy has facilitated the discovery
