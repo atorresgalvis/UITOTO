@@ -33,7 +33,7 @@ features a user-friendly [Shiny](https://shiny.posit.co/) App that can be access
 You may need to complete a pre-installation process to ensure your
 environment is configured with the prerequisites required for
 [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) installation.
-The complete list of packages from CRAN required by
+The complete list of packages from [CRAN](https://cran.r-project.org/) required by
 [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) could be
 provided by typing in R:
 
