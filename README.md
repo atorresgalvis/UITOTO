@@ -87,10 +87,8 @@ program.
 
 Now that everything is ready, you have different ways for installing the
 package.
-<ol>
-<li>
 
-  You can install the released version of
+1.  You can install the released version of
   [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) from
   <a href="https://github.com/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/github-icon-mini.png" alt="" width="3%"></a> with:
 
@@ -100,12 +98,7 @@ package.
   devtools::install_github("atorresgalvis/UITOTO")
   ```
 
-</li>
-
-
-<li>
-
-  Additionally, you can download the source package (e.g., the compressed
+2.  Additionally, you can download the source package (e.g., the
   folder UITOTO_1.0.0.tar.gz) and install it using mouse-only navigation 🖱
   in [RStudio](https://posit.co/products/open-source/rstudio/):
 
@@ -115,9 +108,6 @@ package.
   Installation of UITOTO using mouse-only navigation in RStudio.
   </p>
   </div>
-
-</li>
-</ol>
 
 Then, you should load the package into your work session:
 
