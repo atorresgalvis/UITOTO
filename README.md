@@ -158,7 +158,7 @@ library(UITOTO)
   You could use the module *Find DMCs* of the
   [**`UITOTO`**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/)
   Shiny app for identifying reliable DMCs. However, for very
-  time-consuming searches, the command-driven version is strongly
+  time-consuming searches ⏳, the command-driven version is strongly
   recommended. For this, you will need to use the `OpDMC` function.
 
   ``` r
