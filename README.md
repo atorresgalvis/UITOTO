@@ -117,7 +117,7 @@ library(UITOTO)
 
 ## 👩‍💻 Get Started
 
-- 🏃‍♂️ Running the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
+- 🏃‍♂️ **Running the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)**
   Shiny app locally:
 
   ``` r
@@ -143,7 +143,7 @@ library(UITOTO)
   </p>
   </div>
 
-- 🔍 Find Diagnostic Molecular Combinations (DMCs)
+- 🔍 **Find Diagnostic Molecular Combinations (DMCs)**
 
   You could use the module *Find DMCs* of the
   [**`UITOTO`**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/)
@@ -206,6 +206,6 @@ library(UITOTO)
   cggagctatcacaatattatt---a--attg-g--ta-acg-tc--tca-c-g-aat-ct--tt-atttgtaaaatacg-taggaattaccg-cccttt-tacttcttttatcgtattagccggagctatcacaatattattaacagatcgaaattttaatacatcatttttcgaccctgcaggaggaggagatccccttttatatcaatctattgcacatatcggctatgctgttgatttagcaattttctcccttcacttgatctattgcacatatcggctatgctgttgatttagcaattttctcccttc
   ```
 
-- 🧬 Identifying unknown –aligned and unaligned– sequences using DMCs
+- 🧬 **Identifying unknown –aligned and unaligned– sequences using DMCs**
 
   …
