@@ -106,7 +106,7 @@ devtools::install_github("atorresgalvis/UITOTO")
 <p>
 Additionally, you can download the source package (e.g., the compressed
 folder UITOTO_1.0.0.tar.gz) and install it using mouse-only navigation 🖱
-in <a href="https://posit.co/products/open-source/rstudio/"><RStudio></a>:
+in [RStudio](https://posit.co/products/open-source/rstudio/):
 <div class="figure">
 <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/Install2.PNG" alt="Installation of UITOTO using mouse-only navigation in RStudio." width="100%" />
 <p class="caption">
