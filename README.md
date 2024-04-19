@@ -93,7 +93,7 @@ program.
 Now that everything is ready, you have to ways for installing the
 package. You can install the released version of
 [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) from
-[GitHub](https://github.com/) with:
+<a href="https://github.com/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/github-icon-mini.png" alt="" width="1%"></a>    [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
