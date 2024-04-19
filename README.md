@@ -20,22 +20,24 @@
 
 
 
-The [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) [R](https://www.r-project.org/) package
-addresses the challenges associated with finding, testing, and
-visualizing reliable Diagnostic Molecular Combinations (DMCs),
-especially those arising from high-throughput taxonomy. The package also
-features a user-friendly [Shiny](https://shiny.posit.co/) App that can be accessed
-[online](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) or locally in
-[RStudio](https://posit.co/products/open-source/rstudio/).
+
+The [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
+[R](https://www.r-project.org/) package addresses the challenges
+associated with finding, testing, and visualizing reliable Diagnostic
+Molecular Combinations (DMCs), especially those arising from
+high-throughput taxonomy. The package also features a user-friendly
+[Shiny](https://shiny.posit.co/) App that can be accessed
+[online](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) or
+locally in [RStudio](https://posit.co/products/open-source/rstudio/).
 
 ## Pre-Installation
 
 You may need to complete a pre-installation process to ensure your
 environment is configured with the prerequisites required for
 [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) installation.
-The complete list of packages from [CRAN](https://cran.r-project.org/) required by
-[**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) could be
-provided by typing in [R](https://www.r-project.org/):
+The complete list of packages from [CRAN](https://cran.r-project.org/)
+required by [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
+could be provided by typing in [R](https://www.r-project.org/):
 
 ``` r
 packages <- c("dplyr", "ggplot2", "readr", "seqinr", "shiny", "shinyjs", "shinyWidgets")
@@ -52,10 +54,12 @@ if (any(installed_packages == FALSE)) {
 ```
 
 As [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) uses some
-packages from [Bioconductor](https://www.bioconductor.org) (Biostrings and DECIPHER), it
-is highly recommended to follow the instructions included in
-<https://www.bioconductor.org/install/>. The BiocManager package is used for
-managing [Bioconductor](https://www.bioconductor.org) resources, so to get it you should use:
+packages from [Bioconductor](https://www.bioconductor.org) (Biostrings
+and DECIPHER), it is highly recommended to follow the instructions
+included in <https://www.bioconductor.org/install/>. The BiocManager
+package is used for managing
+[Bioconductor](https://www.bioconductor.org) resources, so to get it you
+should use:
 
 ``` r
 # Updated to 17/04/2024.
@@ -64,13 +68,16 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install(version = "3.18")
 ```
 
-After that, you can install [Biostrings](https://bioconductor.org/packages/release/bioc/html/Biostrings.html):
+After that, you can install
+[Biostrings](https://bioconductor.org/packages/release/bioc/html/Biostrings.html):
 
 ``` r
 BiocManager::install("Biostrings")
 ```
 
-As well as the [DECIPHER](https://www.bioconductor.org/packages/release/bioc/html/DECIPHER.html) package:
+As well as the
+[DECIPHER](https://www.bioconductor.org/packages/release/bioc/html/DECIPHER.html)
+package:
 
 ``` r
 BiocManager::install("DECIPHER")
@@ -102,16 +109,17 @@ library(UITOTO)
 ## Get Started
 
 - Running the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
-  Shiny app locally
+  Shiny app locally:
 
   ``` r
   runUITOTO()
   ```
 
-  **IMPORTANT:** By default, users of [Shiny](https://shiny.posit.co/) apps can only upload files
-  up to 5 MB. You can increase this limit by setting the option before
-  executing the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
-  shiny app. For example, to allow up to 12 MB use:
+  **IMPORTANT:** By default, users of [Shiny](https://shiny.posit.co/)
+  apps can only upload files up to 5 MB. You can increase this limit by
+  setting the option before executing the
+  [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) shiny app. For
+  example, to allow up to 12 MB use:
 
   ``` r
   options(shiny.maxRequestSize = 12 * 1024^2)
@@ -128,9 +136,40 @@ library(UITOTO)
 
   </div>
 
-- This is a basic example which shows you how to solve a common problem:
+- Find Diagnostic Molecular Combinations (DMCs)
 
-``` r
-library(UITOTO)
-## basic example code
-```
+  You could use the module *Find DMCs* of the
+  [**`UITOTO`**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/)
+  Shiny app for identifying reliable DMCs. However, for very
+  time-consuming searches, the command-driven version is strongly
+  recommended. For this, you will need to use the `OpDMC` function.
+
+  ``` r
+  OpDMC("FastaFile.fasta", 
+        "SpeciesList.csv", 
+        iter = 20000, 
+        MnLen = 4, 
+        exclusive = 4, 
+        RefStrength = 0.25, 
+        OutName = "OpDMC_output.csv", 
+        GapsNew = FALSE
+  )
+  ```
+
+  Note well that the
+  [**`UITOTO`**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/)
+  Shiny app can also function as a scripter. This means you don’t have
+  to worry about the syntax of the commands; you simply need to drag the
+  files and modify the settings using mouse-only navigation. The app
+  will then automatically display the equivalent
+  [R](https://www.r-project.org/) commands based on the actions you
+  performed visually:
+
+  <div class="figure">
+
+  <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/FindDMC.PNG" alt="Fig. 2. Module *Find DMCs* of the UITOTO Shiny app." width="100%" />
+  <p class="caption">
+  Fig. 2. Module *Find DMCs* of the UITOTO Shiny app.
+  </p>
+
+  </div>
