@@ -96,7 +96,8 @@ You can install the released version of
 <a href="https://github.com/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/github-icon-mini.png" alt="" width="3%"></a> with:
 
 ``` r
-# install.packages("devtools")
+# Install and load devtools (if you don't have it) with the commands:
+# 		install.packages("devtools"); library(devtools)
 devtools::install_github("atorresgalvis/UITOTO")
 ```
 
@@ -106,7 +107,7 @@ devtools::install_github("atorresgalvis/UITOTO")
 <p>
 Additionally, you can download the source package (e.g., the compressed
 folder UITOTO_1.0.0.tar.gz) and install it using mouse-only navigation 🖱
-in [RStudio](https://posit.co/products/open-source/rstudio/):
+in [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) :
 <div class="figure">
 <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/Install2.PNG" alt="Installation of UITOTO using mouse-only navigation in RStudio." width="100%" />
 <p class="caption">
