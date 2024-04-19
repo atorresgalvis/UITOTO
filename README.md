@@ -118,7 +118,7 @@ library(UITOTO)
 ## 👩‍💻 Get Started
 
 - 🏃‍♂️ **Running the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)**
-  Shiny app locally:
+  **Shiny app locally:**
 
   ``` r
   runUITOTO()
