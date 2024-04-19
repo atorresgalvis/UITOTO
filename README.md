@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p align="center">
@@ -16,10 +15,6 @@
 &emsp;&emsp;
 <a href="https://www.museumfuernaturkunde.berlin/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/mfnLogo.jpg" alt="" width="12%"></a>
 </p>
-
-
-
-
 
 The [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
 [R](https://www.r-project.org/) package addresses the challenges
@@ -106,20 +101,20 @@ Then, you should load the package into your work session:
 library(UITOTO)
 ```
 
-## Get Started
+## 👩‍💻 Get Started
 
-- 🏃 Running the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
+- 🏃‍♂️ Running the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
   Shiny app locally:
 
   ``` r
   runUITOTO()
   ```
 
-  ⚠️ **IMPORTANT:** By default, users of [Shiny](https://shiny.posit.co/)
-  apps can only upload files up to 5 MB. You can increase this limit by
-  setting the option before executing the
-  [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) shiny app. For
-  example, to allow up to 12 MB use:
+  ⚠️ **IMPORTANT:** By default, users of
+  [Shiny](https://shiny.posit.co/) apps can only upload files up to 5
+  MB. You can increase this limit by setting the option before executing
+  the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) shiny app.
+  For example, to allow up to 12 MB use:
 
   ``` r
   options(shiny.maxRequestSize = 12 * 1024^2)
@@ -128,12 +123,10 @@ library(UITOTO)
   ```
 
   <div class="figure">
-
   <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/UITOTOCover.PNG" alt="**Fig. 1.** UITOTO Shiny app home page." width="100%" />
   <p class="caption">
   Fig. 1. UITOTO Shiny app home page.
   </p>
-
   </div>
 
 - 🔍 Find Diagnostic Molecular Combinations (DMCs)
@@ -156,20 +149,18 @@ library(UITOTO)
   )
   ```
 
-  Note well that the
+  👀 Note well that the
   [**`UITOTO`**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/)
   Shiny app can also function as a scripter. This means you don’t have
   to worry about the syntax of the commands; you simply need to drag the
-  files and modify the settings using mouse-only navigation. The app
+  files and modify the settings using mouse-only navigation 🖱. The app
   will then automatically display the equivalent
   [R](https://www.r-project.org/) commands based on the actions you
   performed visually:
 
   <div class="figure">
-
   <img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/FindDMC.PNG" alt="Fig. 2. Module *Find DMCs* of the UITOTO Shiny app." width="100%" />
   <p class="caption">
   Fig. 2. Module *Find DMCs* of the UITOTO Shiny app.
   </p>
-
   </div>
