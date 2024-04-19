@@ -99,7 +99,7 @@ Then, you should load the package into your work session:
 library(UITOTO)
 ```
 
-## Examples
+## Get Started
 
 - Running the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
   Shiny app locally
