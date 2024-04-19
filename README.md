@@ -24,7 +24,7 @@ The [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) [R](https://www.r-pr
 addresses the challenges associated with finding, testing, and
 visualizing reliable Diagnostic Molecular Combinations (DMCs),
 especially those arising from high-throughput taxonomy. The package also
-features a user-friendly [Shiny](https://shiny.posit.co/) App that can be accessed online
+features a user-friendly [Shiny](https://shiny.posit.co/) App that can be accessed
 [online](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) or locally in
 [RStudio](https://posit.co/products/open-source/rstudio/).
 
