@@ -150,6 +150,12 @@ library(UITOTO)
   Shiny app for identifying reliable DMCs. However, for very
   time-consuming searches ⏳, the command-driven version is strongly
   recommended. For this, you will need to use the `OpDMC` function.
+  You will notice that the function includes eight different arguments for configuring searches. 
+	However, most of them are provided with default settings, enhancing user-friendliness while also 
+	enabling customized DMC searches. The complete syntax of the ```OpDMC``` function is outlined below.
+	Information regarding each argument can be found in the [package manual](https://github.com/atorresgalvis/UITOTO/blob/main/UITOTO_1.0.0.pdf), 
+	function help documentation (use `?OpDMC` in the console), or directly within the 
+	[**```UITOTO```**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) Shiny app:
 
   ``` r
   OpDMC("FastaFile.fasta", 
@@ -178,9 +184,10 @@ library(UITOTO)
   Module 'Find DMCs' of the UITOTO Shiny app.
   </p>
 
-  The format and conventions of the input files used by
+  The two mandatory arguments that the user must provide are the names of the input files to be used during the 
+	searches. The format and conventions of the input files used by
   [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) are quite
-  simple. Just provide a single column csv file with the list of
+  simple. First, just provide a single-column csv file with the list of
   entities (*e.g.*, species, genera, OTUs) you wish to diagnose:
 
   ``` r
@@ -190,7 +197,7 @@ library(UITOTO)
   Megaselia
   ```
 
-  The `OpDMC` function reads each one of the rows of the previous file
+  On the other hand, the `OpDMC` function reads each one of the rows of the previous file
   as a character/string vector and selects those sequences from the
   fasta file that have the string in its header. So, it doesn’t matter
   the format of the header of your sequence as long as it contains the
@@ -205,6 +212,8 @@ library(UITOTO)
   >ZRCBDP0364918_LPU09_PU14_Pulau-Ubin_19Apr2018|Megaselia_singaporensis
   cggagctatcacaatattatt---a--attg-g--ta-acg-tc--tca-c-g-aat-ct--tt-atttgtaaaatacg-taggaattaccg-cccttt-tacttcttttatcgtattagccggagctatcacaatattattaacagatcgaaattttaatacatcatttttcgaccctgcaggaggaggagatccccttttatatcaatctattgcacatatcggctatgctgttgatttagcaattttctcccttcacttgatctattgcacatatcggctatgctgttgatttagcaattttctcccttc
   ```
+That's it! Once you have your input files, you are ready to perform DMC searches using the command-drive version
+or the [**```UITOTO```**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) Shiny app.
 
 - 🧬 **Identifying unknown –aligned and unaligned– sequences using DMCs**
 
