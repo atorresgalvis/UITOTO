@@ -161,4 +161,4 @@ library(UITOTO)
 	
 - `r emo::ji("dna")` **Identifying unknown --aligned and unaligned-- sequences using DMCs**
 
-	...
+	...`r emo::ji("woman_construction_worker")``r emo::ji("construction")``r emo::ji("man_construction_worker")`
