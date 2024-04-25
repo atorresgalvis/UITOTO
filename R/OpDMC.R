@@ -1,6 +1,6 @@
 ## Title: OpDMC
 ## Version: 0.1-1
-## Date: 2024-04-17
+## Date: 2024-04-25
 ## Author: Ambrosio Torres (Researcher [Ctr. Integr. Biodivers. Discov. - Museum für Naturkunde, Berlin, Germany)
 ## Maintainer: Ambrosio Torres <atorresgalvis@gmail.com> <Ambrosio.TorresGalvis@mfn.berlin>
 ## Depends: R version (>= 4.2.2 ). Packages   seqinr (4.2-23)
@@ -42,7 +42,7 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 		llenado <- 0
 		clave <- NULL
 		while (llenado < tamano) {
-			dado <- sample(10:90, 1) #The extreme values are always discarded (those with >90), or they are always taking into account (those with < 10)
+			dado <- sample(10:50, 1) #Those with >50 are always discarded. Those with < 10 are always taken into account.
 			pallenar <- sample(1:length(victor), 1)
 			if (punta[pallenar] <= dado) {
 				clave <- c(clave, victor[pallenar])
