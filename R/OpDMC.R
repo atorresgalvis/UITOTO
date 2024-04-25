@@ -127,6 +127,12 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 				puntajes[i] <- contraElDado
 			}			
 		}
+
+		habilitados <- as.numeric(table(puntajes > 50)[1])
+		IterPosibles <- choose(habilitados, exclusive) + choose(habilitados, exclusive+1) + choose(habilitados, exclusive+2)
+		if(IterPosibles < iteraciones){
+			iteraciones <- IterPosibles / 3
+		}
 		
 		lista <- NULL
 		lista2 <- NULL
