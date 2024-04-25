@@ -127,12 +127,6 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 				puntajes[i] <- contraElDado
 			}			
 		}
-
-		habilitados <- as.numeric(table(puntajes > 50)[1])
-		IterPosibles <- choose(habilitados, exclusive) + choose(habilitados, exclusive+1) + choose(habilitados, exclusive+2)
-		if(IterPosibles < iteraciones){
-			iteraciones <- round(IterPosibles / 3)
-		}
 		
 		lista <- NULL
 		lista2 <- NULL
@@ -140,8 +134,19 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 		AltrDNC <- NULL
 		minimo <- maxlength
 		soluciones <- 0
-		breakadicionales <- round(iteraciones*0.2)
 		iteraciones2 <- iteraciones
+		
+		habilitados <- as.numeric(table(puntajes > 50)[1])
+		IterPosibles <- 0
+		for (tamanduas in minlength:maxlength) {
+			cuasi <- choose(habilitados, tamanduas)
+			IterPosibles <- IterPosibles + cuasi
+		}
+		if(IterPosibles < iteraciones2){
+			iteraciones2 <- round(IterPosibles / 3)
+		}
+		
+		breakadicionales <- round(iteraciones2*0.2)
 		veces <- 0
 		buffi <- NULL
 		while (soluciones < 2) { # If there are not at least 2 possible DMCs, more iterations will be added.
@@ -151,6 +156,17 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 				message("None of the combinations tested are suitable to become a DMC.")
 				message(paste("The maximum length of the DMCs has been reset to", maxlength))
 				iteraciones2 <- iteraciones
+				
+				IterPosibles <- 0
+				for (tamanduas in minlength:maxlength) {
+					cuasi <- choose(habilitados, tamanduas)
+					IterPosibles <- IterPosibles + cuasi
+				}
+				if(IterPosibles < iteraciones2){
+					iteraciones2 <- round(IterPosibles / 3)
+				}
+				
+				breakadicionales <- round(iteraciones2*0.2)
 				veces <- 0
 			}
 			reales <- 0
