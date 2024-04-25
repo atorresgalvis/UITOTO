@@ -180,20 +180,25 @@ FinalTable <- reactive({
 				}			
 			}	
 			
-			habilitados <- as.numeric(table(puntajes > 50)[1])
-			IterPosibles <- choose(habilitados, exclusive) + choose(habilitados, exclusive+1) + choose(habilitados, exclusive+2)
-			if(IterPosibles < iteraciones){
-				iteraciones <- round(IterPosibles / 3)
-			}
-		
 			lista <- NULL
 			lista2 <- NULL
 			lista <- list()
 			AltrDNC <- NULL
 			minimo <- maxlength
 			soluciones <- 0
-			breakadicionales <- round(iteraciones*0.2)
 			iteraciones2 <- iteraciones
+
+			habilitados <- as.numeric(table(puntajes > 50)[1])
+			IterPosibles <- 0
+			for (tamanduas in minlength:maxlength) {
+				cuasi <- choose(habilitados, tamanduas)
+				IterPosibles <- IterPosibles + cuasi
+			}
+			if(IterPosibles < iteraciones2){
+				iteraciones2 <- round(IterPosibles / 3)
+			}
+
+			breakadicionales <- round(iteraciones2*0.2)
 			veces <- 0
 			buffi <- NULL
 			while (soluciones < 2) {
@@ -201,8 +206,19 @@ FinalTable <- reactive({
 					maxlength <- maxlength + 1
 					minimo <- maxlength
 					message("None of the combinations tested are suitable to become a DMC.")
-					message(paste("The maximum lenght of the DMCs has been reset to=", maxlength))
+					message(paste("The maximum length of the DMCs has been reset to", maxlength))
 					iteraciones2 <- iteraciones
+					
+					IterPosibles <- 0
+					for (tamanduas in minlength:maxlength) {
+						cuasi <- choose(habilitados, tamanduas)
+						IterPosibles <- IterPosibles + cuasi
+					}
+					if(IterPosibles < iteraciones2){
+						iteraciones2 <- round(IterPosibles / 3)
+					}
+					
+					breakadicionales <- round(iteraciones2*0.2)
 					veces <- 0
 				}
 				reales <- 0
