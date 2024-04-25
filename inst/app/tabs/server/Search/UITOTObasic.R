@@ -90,7 +90,7 @@ FinalTable <- reactive({
 		llenado <- 0
 		clave <- NULL
 		while (llenado < tamano) {
-			dado <- sample(10:90, 1)
+			dado <- sample(10:50, 1)
 			pallenar <- sample(1:length(victor), 1)
 			if (punta[pallenar] <= dado) {
 				clave <- c(clave, victor[pallenar])
@@ -150,7 +150,6 @@ FinalTable <- reactive({
 				validation1(cuentaClado)
 			)			
 			
-			
 			for (i in 1:length(VarSites)) {
 				if ( (length(levels(factor(unname(sapply(raw_records[clado], `[`, VarSites[i])))))) == 1 ) {
 					if (GapsNew == FALSE) {
@@ -180,6 +179,12 @@ FinalTable <- reactive({
 					puntajes[i] <- contraElDado
 				}			
 			}	
+			
+			habilitados <- as.numeric(table(puntajes > 50)[1])
+			IterPosibles <- choose(habilitados, exclusive) + choose(habilitados, exclusive+1) + choose(habilitados, exclusive+2)
+			if(IterPosibles < iteraciones){
+				iteraciones <- round(IterPosibles / 3)
+			}
 		
 			lista <- NULL
 			lista2 <- NULL
