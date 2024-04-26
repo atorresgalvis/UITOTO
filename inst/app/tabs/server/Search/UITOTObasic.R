@@ -86,20 +86,6 @@ FinalTable <- reactive({
 		return(lst)
 	}
 	
-	muestrear <- function (victor, punta, tamano){
-		llenado <- 0
-		clave <- NULL
-		while (llenado < tamano) {
-			dado <- sample(10:50, 1)
-			pallenar <- sample(1:length(victor), 1)
-			if (punta[pallenar] <= dado) {
-				clave <- c(clave, victor[pallenar])
-				llenado <- llenado + 1
-			}
-		}
-		return(clave)
-	}
-	
 	validation1 <- function(input) {
 		if (input == 0) {
 			paste("The species", qTAXA, "is not present in your fasta file.",
@@ -237,12 +223,19 @@ FinalTable <- reactive({
 							}
 						}	
 						size <- size - unicount
-						tokey <- muestrear(shared, puntajes, size)
-						tokey <- c(tokey, unica)
-						while (	any(duplicated(tokey)) == TRUE) {
-							tokey <- muestrear(shared, puntajes, size)
-							tokey <- c(tokey, unica)
-						}							
+						shared2 <- shared[-c(unica)]
+						llenado <- 0
+						tokey <- NULL
+						while (llenado < size) { 
+							dado <- sample(10:50, 1) #Those with >50 are always discarded. Those with < 10 are always taken into account.
+							pallenar <- sample(1:length(shared2), 1)
+							if (puntajes[pallenar] <= dado) {
+								tokey <- c(tokey, shared2[pallenar])
+								llenado <- llenado + 1
+								shared2 <- shared2[-pallenar]
+							}
+						}						
+						tokey <- c(tokey, unica)						
 						key <- unname(sapply(raw_records[clado[1]], `[`, tokey))[,1]
 						names(key) <- tokey
 					} else if (unicount > 0 && unicount >= minlength) {
@@ -258,7 +251,18 @@ FinalTable <- reactive({
 							next
 						}	
 					} else {
-						tokey <- muestrear(shared, puntajes, size)
+						shared2 <- shared
+						llenado <- 0
+						tokey <- NULL
+						while (llenado < size) { 
+							dado <- sample(10:50, 1) #Those with >50 are always discarded. Those with < 10 are always taken into account.
+							pallenar <- sample(1:length(shared2), 1)
+							if (puntajes[pallenar] <= dado) {
+								tokey <- c(tokey, shared2[pallenar])
+								llenado <- llenado + 1
+								shared2 <- shared2[-pallenar]
+							}
+						}				
 						key <- unname(sapply(raw_records[clado[1]], `[`, tokey))[,1]
 						names(key) <- tokey
 					}	
