@@ -8,7 +8,7 @@
 ## License: GPL (3)
 ## Usage: OpDMC("MegaseliaTraining.fasta", "SpeciesListMegaselia.csv", iter = 5000, MnLen = 3, exclusive = 2, RefStrength = 0.10, OutName = "OpDMC_Megaselia.csv", GapsNew = FALSE)
 
-OpDMC2 <- function(FastaFile, species, iter = 20000, 
+OpDMC <- function(FastaFile, species, iter = 20000, 
 				  MnLen = 4, exclusive = 4, RefStrength = 0.25,
 				  OutName = "OpDMC_output.csv", GapsNew = FALSE){
 	require("seqinr")
