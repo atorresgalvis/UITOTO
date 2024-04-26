@@ -1,6 +1,6 @@
 ## Title: OpDMC
 ## Version: 0.1-1
-## Date: 2024-04-25
+## Date: 2024-04-26
 ## Author: Ambrosio Torres (Researcher [Ctr. Integr. Biodivers. Discov. - Museum für Naturkunde, Berlin, Germany)
 ## Maintainer: Ambrosio Torres <atorresgalvis@gmail.com> <Ambrosio.TorresGalvis@mfn.berlin>
 ## Depends: R version (>= 4.2.2 ). Packages   seqinr (4.2-23)
@@ -8,7 +8,7 @@
 ## License: GPL (3)
 ## Usage: OpDMC("MegaseliaTraining.fasta", "SpeciesListMegaselia.csv", iter = 5000, MnLen = 3, exclusive = 2, RefStrength = 0.10, OutName = "OpDMC_Megaselia.csv", GapsNew = FALSE)
 
-OpDMC <- function(FastaFile, species, iter = 20000, 
+OpDMC2 <- function(FastaFile, species, iter = 20000, 
 				  MnLen = 4, exclusive = 4, RefStrength = 0.25,
 				  OutName = "OpDMC_output.csv", GapsNew = FALSE){
 	require("seqinr")
@@ -37,20 +37,6 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 		lst <- c(lst, list(...))
 		return(lst)
 	}
-	
-	muestrear <- function (victor, punta, tamano){ #Function for Simple Weighted Random Sampling
-		llenado <- 0
-		clave <- NULL
-		while (llenado < tamano) {
-			dado <- sample(10:50, 1) #Those with >50 are always discarded. Those with < 10 are always taken into account.
-			pallenar <- sample(1:length(victor), 1)
-			if (punta[pallenar] <= dado) {
-				clave <- c(clave, victor[pallenar])
-				llenado <- llenado + 1
-			}
-		}
-		return(clave)
-	}	
 	
 	raw_records <- read.fasta(FastaFile, whole.header = TRUE, forceDNAtolower = TRUE)
 	cadena <- NULL
@@ -185,12 +171,19 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 						}
 					}	
 					size <- size - unicount
-					tokey <- muestrear(shared, puntajes, size)
-					tokey <- c(tokey, unica)
-					while (	any(duplicated(tokey)) == TRUE) {
-						tokey <- muestrear(shared, puntajes, size)
-						tokey <- c(tokey, unica)
+					shared2 <- shared[-c(unica)]
+					llenado <- 0
+					tokey <- NULL
+					while (llenado < size) { 
+						dado <- sample(10:50, 1) #Those with >50 are always discarded. Those with < 10 are always taken into account.
+						pallenar <- sample(1:length(shared2), 1)
+						if (puntajes[pallenar] <= dado) {
+							tokey <- c(tokey, shared2[pallenar])
+							llenado <- llenado + 1
+							shared2 <- shared2[-pallenar]
+						}
 					}
+					tokey <- c(tokey, unica)				
 					key <- unname(sapply(raw_records[clado[1]], `[`, tokey))[,1]
 					names(key) <- tokey
 				} else if (unicount > 0 && unicount >= minlength) {
@@ -206,7 +199,18 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 						next
 					}	
 				} else {
-					tokey <- muestrear(shared, puntajes, size)
+					shared2 <- shared
+					llenado <- 0
+					tokey <- NULL
+					while (llenado < size) { 
+						dado <- sample(10:50, 1) #Those with >50 are always discarded. Those with < 10 are always taken into account.
+						pallenar <- sample(1:length(shared2), 1)
+						if (puntajes[pallenar] <= dado) {
+							tokey <- c(tokey, shared2[pallenar])
+							llenado <- llenado + 1
+							shared2 <- shared2[-pallenar]
+						}
+					}
 					key <- unname(sapply(raw_records[clado[1]], `[`, tokey))[,1]
 					names(key) <- tokey
 				}
