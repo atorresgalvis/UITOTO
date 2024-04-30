@@ -223,7 +223,7 @@ FinalTable <- reactive({
 							}
 						}	
 						size <- size - unicount
-						shared2 <- shared[-c(unica)]
+						shared2 <- setdiff(shared, unica)
 						llenado <- 0
 						tokey <- NULL
 						while (llenado < size) { 
