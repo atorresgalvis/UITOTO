@@ -61,7 +61,7 @@ Search <- tabPanel(title = "Find DMCs",
 					":"
 				),
 				min = 2, max = 15,
-				value = 4, step = 1
+				value = 8, step = 1
 			),	
 			sliderInput("exclusive", 
 				label = tags$span(
