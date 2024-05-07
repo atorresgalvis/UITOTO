@@ -1,6 +1,6 @@
 ## Title: OpDMC
 ## Version: 0.1-1
-## Date: 2024-04-30
+## Date: 2024-05-07
 ## Author: Ambrosio Torres (Researcher [Ctr. Integr. Biodivers. Discov. - Museum für Naturkunde, Berlin, Germany)
 ## Maintainer: Ambrosio Torres <atorresgalvis@gmail.com> <Ambrosio.TorresGalvis@mfn.berlin>
 ## Depends: R version (>= 4.2.2 ). Packages   seqinr (4.2-23)
@@ -9,7 +9,7 @@
 ## Usage: OpDMC("MegaseliaTraining.fasta", "SpeciesListMegaselia.csv", iter = 5000, MnLen = 3, exclusive = 2, RefStrength = 0.10, OutName = "OpDMC_Megaselia.csv", GapsNew = FALSE)
 
 OpDMC <- function(FastaFile, species, iter = 20000, 
-				  MnLen = 4, exclusive = 4, RefStrength = 0.25,
+				  MnLen = 8, exclusive = 4, RefStrength = 0.25,
 				  OutName = "OpDMC_output.csv", GapsNew = FALSE){
 	require("seqinr")
 	
