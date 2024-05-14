@@ -85,7 +85,8 @@ exclusive character states when compared to other species."
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
 						title = "This is the proportion of sub-combinations from each resulting DMC that will be tested. 
-This option aims to identify potential shorter DMCs."
+The higher the refinement strength, the more likely the program is to identify potential shorter DMCs.
+However, take into account that the refinement strength also increases the time consumption."
 					), 
 					":"
 				),
