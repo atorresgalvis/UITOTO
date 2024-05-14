@@ -33,7 +33,7 @@ OpDMC(
 		optional integer: the minimum number of exclusive character states that DMCs must have. The default is \code{4}.
 	}
 	\item{RefStrength}{
-		optional double (decimal value): the refinement strength (i.e., the proportion of sub-combinations from each DMC to test). The default is \code{0.25}.
+		optional double (decimal value): the refinement strength (i.e., the proportion of sub-combinations from each DMC to test. The higher the refinement strength, the more likely the program is to identify potential shorter DMCs. However, take into account that the refinement strength also increases the time consumption). The default is \code{0.25}.
 	}
 	\item{OutName}{
 		optional: the name of the CSV output file containing the DMCs. The default is \code{"OpDMC_output.csv"}.
