@@ -147,21 +147,10 @@ Tableta2 <- reactive({
 				patron <- raw_records[[1]]
 				patron <- paste(patron, collapse= "")
 	
-				mindista <- 1
-				for (pilas in 1:4) {
-					prueba <- AlignProfiles(DNAStringSet(patron), DNAStringSet(queries[pilas]), 
-									perfectMatch= perfect, 
-									misMatch= misma, 
-									gapOpening = open,
-									gapExtension = increment,
-									gapPower = gapo,
-									terminalGap = terminal)
-					meximo <- max(DistanceMatrix(prueba, verbose=F))
-					if (meximo < mindista) {
-						mindista <- meximo
-						prueba2 <- prueba
-					}
-				}
+				prueba <- AlignProfiles(DNAStringSet(patron), DNAStringSet(queries))
+				indigo <- which.min(DistanceMatrix(prueba, verbose = F)[2:5,1])
+				prueba2 <- prueba[1:(indigo+1)]
+				
 				resul2 <- compareStrings(as.character(prueba2[2]), as.character(prueba2[1]))
 				if ( grepl("\\+", resul2) ) {
 					paeliminar <- strsplit(resul2, split="")[[1]]
@@ -178,7 +167,39 @@ Tableta2 <- reactive({
 					datos[[i]] <- strsplit(as.character(prueba2[2]), split="")[[1]]
 					propia[[i]] <<- datos[[i]]
 				}
+				nomina <- names(raw_records)[1]
 			}
+			
+			if (input$Agata == "All sequences available") {			
+				FUN = function(x)
+				paste(getSequence(x), collapse = "")
+				raw_records2 <- as(vapply(raw_records, FUN, character(1)), "DNAStringSet")
+				
+				prueba <- AlignProfiles(raw_records2, DNAStringSet(queries))
+				indigo <- which.min(DistanceMatrix(prueba, verbose = F)[(length(prueba)-3):length(prueba),1])
+				indigo2 <- which.min(DistanceMatrix(prueba, verbose = F)[1:length(raw_records2),(indigo+length(raw_records2))])
+				prueba2 <- prueba[c(indigo2,(indigo+length(raw_records2)))]
+				
+				resul2 <- compareStrings(as.character(prueba2[2]), as.character(prueba2[1]))
+				if ( grepl("\\+", resul2) ) {
+					paeliminar <- strsplit(resul2, split="")[[1]]
+					funar <- NULL
+					for (mas in 1:length(paeliminar)){
+						if(paeliminar[mas] == "+") {
+							funar <- c(funar, mas)
+						}	
+					}
+					alineado <- strsplit( as.character(prueba2[2]), split="")[[1]]
+					datos[[i]] <- alineado[-c(funar)]
+					propia[[i]] <<- datos[[i]]
+				} else {
+					datos[[i]] <- strsplit(as.character(prueba2[2]), split="")[[1]]
+					propia[[i]] <<- datos[[i]]
+				}
+				nomina <- names(prueba2)[1]
+			}
+			
+			simil <- 1 - DistanceMatrix(prueba2, verbose = F)[1,2]
 			
 			chequeo <- 0
 			if (input$OutMiss1 == "none") {
@@ -195,49 +216,6 @@ Tableta2 <- reactive({
 			for (j in 1:dim(datiles)[1]) {
 				DMC <- datiles$DMC[j]
 				DMC <- strsplit(DMC, " ")[[1]]
-
-				if (input$Agata == "All sequences available") {			
-					especie <- datiles$Species[j]
-					for (catch in 1:length(raw_records)) { #Catching a sequence of the target taxon
-						if ( grepl(especie, (attributes(raw_records)$names[catch]) ) ){
-							patron <- raw_records[[catch]]
-							patron <- paste(patron, collapse= "")
-							break
-						}
-					}
-					
-					mindista <- 1
-					for (pilas in 1:4) {
-						prueba <- AlignProfiles(DNAStringSet(patron), DNAStringSet(queries[pilas]), 
-										perfectMatch= perfect, 
-										misMatch= misma, 
-										gapOpening = open,
-										gapExtension = increment,
-										gapPower = gapo,
-										terminalGap = terminal)
-						meximo <- max(DistanceMatrix(prueba, verbose=F))
-						if (meximo < mindista) {
-							mindista <- meximo
-							prueba2 <- prueba
-						}
-					}
-					resul2 <- compareStrings(as.character(prueba2[2]), as.character(prueba2[1]))
-					if ( grepl("\\+", resul2) ) {
-						paeliminar <- strsplit(resul2, split="")[[1]]
-						funar <- NULL
-						for (mas in 1:length(paeliminar)){
-							if(paeliminar[mas] == "+") {
-								funar <- c(funar, mas)
-							}	
-						}
-						alineado <- strsplit( as.character(prueba2[2]), split="")[[1]]
-						datos[[i]] <- alineado[-c(funar)]
-						propia[[i]] <<- datos[[i]]
-					} else {
-						datos[[i]] <- strsplit(as.character(prueba2[2]), split="")[[1]]
-						propia[[i]] <<- datos[[i]]
-					}
-				}
 				
 				if (chequeo == 1) {
 					DMCtemp <- gsub('[ACGT]','', DMC); DMCtemp <- gsub("  "," ", DMCtemp)
@@ -261,11 +239,11 @@ Tableta2 <- reactive({
 				}
 				matchi <- (sum((key == toupper(totest)), na.rm = TRUE))
 				if (identical(toupper(key),toupper(totest))) {
-					pares <- paste("-", datiles$Species[j], "[", matchi, "/", (length(DMC)/2), " {", format(meximo, digits = 3), "}]", sep = "")
+					pares <- paste("-", datiles$Species[j], "[", matchi, "/", (length(DMC)/2), " {", format(simil, digits = 3), " similar to ", nomina, "}]", sep = "")
 					resultado <- paste(resultado, pares, sep = "")
 					count <- count + 1
 				} else if ( matchi < (length(DMC)/2)    &    matchi >= ((length(DMC)/2)-subopt) ) {
-					pares <- paste("-", datiles$Species[j], "[", matchi, "/", (length(DMC)/2), " {", format(meximo, digits = 3), "}]", sep = "")
+					pares <- paste("-", datiles$Species[j], "[", matchi, "/", (length(DMC)/2), " {", format(simil, digits = 3), " similar to ", nomina, "}]", sep = "")
 					resultado <- paste(resultado, pares, sep = "")
 					count <- count + 1
 				}	
