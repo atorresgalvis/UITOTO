@@ -1,12 +1,16 @@
 ## Title: ALnID
 ## Version: 0.1-1
-## Date: 2024-03-27
+## Date: 2024-05-15
 ## Author: Ambrosio Torres (Researcher [Ctr. Integr. Biodivers. Discov. - Museum für Naturkunde, Berlin, Germany)
 ## Maintainer: Ambrosio Torres <atorresgalvis@gmail.com> <Ambrosio.TorresGalvis@mfn.berlin>
 ## Depends: R version (>= 4.2.2). Packages   seqinr (4.2-23); Biostrings (2.66.0); DECIPHER (2.30.0)
 ## Description: identifies the specimens of the unaligned sequences given in a fasta file, based on a pool of DMCs (e.g., those included in an Output-File from OpDMC).
 ## License: GPL (3)
 ## Usage: ALnID("OpDMC_output.csv", "DatasetAlignedTarget.fas", "DatasetUnalignedQuery.fas", mismatches = 1, against= "First", perfectMatch=5, misMatch=0, gapOpening = -14, gapExtension = -2, gapPower = -1, terminalGap = 0, OutName = "IdentificationOutput.csv", MissLogFile= "LogMissing.csv", AligName = "ResultingAlignment.fasta")
+
+require("Biostrings")
+require("seqinr")
+require("DECIPHER")
 
 ALnID <- function(DMC_Output, dataTarget, dataQuery, 
 				  mismatches = 1,
@@ -21,9 +25,6 @@ ALnID <- function(DMC_Output, dataTarget, dataQuery,
 				  MissLogFile= "LogMissing.csv",
 				  AligName = "ResultingAlignment.fasta"				  
 				  ) { 
-	require("Biostrings")
-	require("seqinr")
-	require("DECIPHER")
 	
 	datos <- read.fasta(dataQuery, whole.header = TRUE, forceDNAtolower = FALSE)
 	nombres <- names(datos)
@@ -83,21 +84,10 @@ ALnID <- function(DMC_Output, dataTarget, dataQuery,
 			patron <- raw_records[[1]]
 			patron <- paste(patron, collapse= "")
 			
-			mindista <- 1
-			for (pilas in 1:4) {
-				prueba <- AlignProfiles(DNAStringSet(patron), DNAStringSet(queries[pilas]), 
-								perfectMatch= perfectMatch, 
-								misMatch= misMatch, 
-								gapOpening = gapOpening,
-								gapExtension = gapExtension,
-								gapPower = gapPower,
-								terminalGap = terminalGap)
-				meximo <- max(DistanceMatrix(prueba, verbose=F))
-				if (meximo < mindista) {
-					mindista <- meximo
-					prueba2 <- prueba
-				}
-			}
+			prueba <- AlignProfiles(DNAStringSet(patron), DNAStringSet(queries))
+			indigo <- which.min(DistanceMatrix(prueba, verbose = F)[2:5,1])
+			prueba2 <- prueba[1:(indigo+1)]
+	
 			resul2 <- compareStrings(as.character(prueba2[2]), as.character(prueba2[1]))
 			if ( grepl("\\+", resul2) ) {
 				paeliminar <- strsplit(resul2, split="")[[1]]
@@ -112,7 +102,37 @@ ALnID <- function(DMC_Output, dataTarget, dataQuery,
 			} else {
 				datos[[i]] <- strsplit(as.character(prueba2[2]), split="")[[1]]
 			}
+			nomina <- names(raw_records)[1]
 		}
+		
+		if (against == "All") {			
+			FUN = function(x)
+			paste(getSequence(x), collapse = "")
+			raw_records2 <- as(vapply(raw_records, FUN, character(1)), "DNAStringSet")
+			 
+			prueba <- AlignProfiles(raw_records2, DNAStringSet(queries))
+			indigo <- which.min(DistanceMatrix(prueba, verbose = F)[(length(prueba)-3):length(prueba),1])
+			indigo2 <- which.min(DistanceMatrix(prueba, verbose = F)[1:length(raw_records2),(indigo+length(raw_records2))])
+			prueba2 <- prueba[c(indigo2,(indigo+length(raw_records2)))]
+		
+			resul2 <- compareStrings(as.character(prueba2[2]), as.character(prueba2[1]))
+			if ( grepl("\\+", resul2) ) {
+				paeliminar <- strsplit(resul2, split="")[[1]]
+				funar <- NULL
+				for (mas in 1:length(paeliminar)){
+					if(paeliminar[mas] == "+") {
+						funar <- c(funar, mas)
+					}	
+				}
+				alineado <- strsplit( as.character(prueba2[2]), split="")[[1]]
+				datos[[i]] <- alineado[-c(funar)]
+			} else {
+				datos[[i]] <- strsplit(as.character(prueba2[2]), split="")[[1]]
+			}
+			nomina <- names(prueba2)[1]
+		}
+		
+		simil <- 1 - DistanceMatrix(prueba2, verbose = F)[1,2]
 		
 		chequeo <- 0
 		if (MissLogFile == "none") {
@@ -129,47 +149,6 @@ ALnID <- function(DMC_Output, dataTarget, dataQuery,
 		for (j in 1:dim(datiles)[1]) {
 			DMC <- datiles$DMC[j]
 			DMC <- strsplit(DMC, " ")[[1]]
-
-			if (against == "All") {			
-				especie <- datiles$Species[j]
-				for (catch in 1:length(raw_records)) { #Catching a sequence of the target taxon
-					if ( grepl(especie, (attributes(raw_records)$names[catch]) ) ){
-						patron <- raw_records[[catch]]
-						patron <- paste(patron, collapse= "")
-						break
-					}
-				}
-				
-				mindista <- 1
-				for (pilas in 1:4) {
-					prueba <- AlignProfiles(DNAStringSet(patron), DNAStringSet(queries[pilas]), 
-									perfectMatch= perfectMatch, 
-									misMatch= misMatch, 
-									gapOpening = gapOpening,
-									gapExtension = gapExtension,
-									gapPower = gapPower,
-									terminalGap = terminalGap)
-					meximo <- max(DistanceMatrix(prueba, verbose=F))
-					if (meximo < mindista) {
-						mindista <- meximo
-						prueba2 <- prueba
-					}	
-				}
-				resul2 <- compareStrings(as.character(prueba2[2]), as.character(prueba2[1]))
-				if ( grepl("\\+", resul2) ) {
-					paeliminar <- strsplit(resul2, split="")[[1]]
-					funar <- NULL
-					for (mas in 1:length(paeliminar)){
-						if(paeliminar[mas] == "+") {
-							funar <- c(funar, mas)
-						}	
-					}
-					alineado <- strsplit( as.character(prueba2[2]), split="")[[1]]
-					datos[[i]] <- alineado[-c(funar)]
-				} else {
-					datos[[i]] <- strsplit(as.character(prueba2[2]), split="")[[1]]
-				}
-			}
 			
 			if (chequeo == 1) {
 				DMCtemp <- gsub('[ACGT]','', DMC); DMCtemp <- gsub("  "," ", DMCtemp)
@@ -193,11 +172,11 @@ ALnID <- function(DMC_Output, dataTarget, dataQuery,
 			}
 			matchi <- (sum((key == toupper(totest)), na.rm = TRUE))
 			if (identical(toupper(key),toupper(totest))) {
-				pares <- paste("-", datiles$Species[j], "[", matchi, "/", (length(DMC)/2), " {", format(meximo, digits = 3), "}",  "]", sep = "")
+				pares <- paste("-", datiles$Species[j], "[", matchi, "/", (length(DMC)/2), " {", format(simil, digits = 3), " similar to ", nomina, "}",  "]", sep = "")
 				resultado <- paste(resultado, pares, sep = "")
 				count <- count + 1
 			} else if ( matchi < (length(DMC)/2)    &    matchi >= ((length(DMC)/2)-mismatches) ) {
-				pares <- paste("-", datiles$Species[j], "[", matchi, "/", (length(DMC)/2), " {", format(meximo, digits = 3), "}",  "]", sep = "")
+				pares <- paste("-", datiles$Species[j], "[", matchi, "/", (length(DMC)/2), " {", format(simil, digits = 3), " similar to ", nomina, "}",  "]", sep = "")
 				resultado <- paste(resultado, pares, sep = "")
 				count <- count + 1
 			}	
@@ -209,9 +188,10 @@ ALnID <- function(DMC_Output, dataTarget, dataQuery,
 		FinalTable <- rbind(FinalTable, palata)
 		colnames(FinalTable) <- c("SpecimenName", "MatchesWith")
 		write.csv(FinalTable, file= OutName)
-		write.fasta(datos, names= nombres, file.out = AligName)	
-		cat(if (i == length(datos)) '\n' else '\014')
-		#print(as.character(prueba2[1]))
-		#print(as.character(prueba2[2]))	
+		if (AligName == "none") {
+		} else {
+			write.fasta(datos, names= nombres, file.out = AligName)	
+		}
+		cat(if (i == length(datos)) '\n' else '\014')	
 	}
 }

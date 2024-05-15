@@ -1,6 +1,6 @@
 ## Title: Identifier
 ## Version: 0.1-1
-## Date: 2024-03-27
+## Date: 2024-05-15
 ## Author: Ambrosio Torres (Researcher [Ctr. Integr. Biodivers. Discov. - Museum für Naturkunde, Berlin, Germany)
 ## Maintainer: Ambrosio Torres <atorresgalvis@gmail.com> <Ambrosio.TorresGalvis@mfn.berlin>
 ## Depends: R version (>= 4.2.2 ). Packages   seqinr (4.2-23)
@@ -8,8 +8,10 @@
 ## License: GPL (3)
 ## Usage: Identifier("OpDMC_output.csv", "DatasetAlignedQuery.fas", mismatches = 1, OutName = "IdentificationOutput.csv", MissLogFile= "LogMissing.csv")
 
+require("seqinr")
+
 Identifier <- function(DMC_Output, dataset, mismatches = 1, OutName = "IdentificationOutput.csv", MissLogFile= "LogMissing.csv") { 
-	require("seqinr")
+
 	datos <- read.fasta(dataset, whole.header = TRUE, forceDNAtolower = FALSE)
 	
 	datiles <- read.csv(DMC_Output, header = TRUE)

@@ -1,6 +1,6 @@
 ## Title: IdentifierU
 ## Version: 0.1-1
-## Date: 2024-03-19
+## Date: 2024-05-15
 ## Author: Ambrosio Torres (Researcher [Ctr. Integr. Biodivers. Discov. - Museum für Naturkunde, Berlin, Germany)
 ## Maintainer: Ambrosio Torres <atorresgalvis@gmail.com> <Ambrosio.TorresGalvis@mfn.berlin>
 ## Depends: R version (>= 4.2.2 ). Packages   seqinr (4.2-23)
@@ -8,8 +8,9 @@
 ## License: GPL (3)
 ## Usage: IdentifierU("OpDMC_output.csv", "MycetoSpecies170622_COI_aligned_313only_hap_SMH_dataset1_mold.fas", mismatches = 0, WinWidth = 10, OutName = "IdentificationOutput.csv")
 
+require("seqinr")
+
 IdentifierU <- function(DMC_Output, dataset, mismatches = 1, WinWidth = 20, OutName = "IdentificationOutput.csv") { 
-	require("seqinr")
 	
 	datos <- read.fasta(dataset, whole.header = TRUE, forceDNAtolower = FALSE)
 	datiles <- read.csv(DMC_Output, header = TRUE)
