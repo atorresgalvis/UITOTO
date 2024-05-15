@@ -32,7 +32,7 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 	iteraciones <- iter
 	minlength <- MnLen
 	refinStrength <- RefStrength
-	maxlength <- MnLen + 2
+	maxlength <- (MnLen * 2) + 1
 	
 	lappend <- function (lst, ...){ #Function to append objects to a list
 		lst <- c(lst, list(...))
@@ -65,7 +65,7 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 	TablaFinal <- NULL
 	message("Identifying possible DMCs for the species:")
 	for (cladin in 1:(dim(datos)[1]) ) {
-		maxlength <- MnLen + 2
+		maxlength <- (MnLen * 2) + 1
 		avance <- round(((cladin-1)/(dim(datos)[1]))*100)
 		
 		qTAXA <- datos[cladin,]
