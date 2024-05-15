@@ -79,7 +79,7 @@ FinalTable <- reactive({
 		message("The MnLen parameter cannot be smaller than the exclusive parameter. Thus, it was reset automatically.")
 	}
 	
-	maxlength <- minlength + 2
+	maxlength <- (minlength * 2) + 1
 	
 	lappend <- function (lst, ...){
 		lst <- c(lst, list(...))
@@ -118,7 +118,7 @@ FinalTable <- reactive({
 	TablaFinal <- NULL
 	withProgress(message = 'Identifying possible DMCs for:', value = 0, {
 		for (cladin in 1:(dim(datos)[1]) ) {
-			maxlength <- minlength + 2
+			maxlength <- (minlength * 2) + 1
 			avance <- round(((cladin-1)/(dim(datos)[1]))*100)
 			
 			qTAXA <- datos[cladin,]
