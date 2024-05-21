@@ -110,19 +110,19 @@ frasesita <- reactive({
 			patron <- toupper(secular[[cual]]);
 			
 			if (input$italica == TRUE) {
-				nominal <- c("<i>", nombres[cual], "</i>")
+				nominal <- c("<i>", "<font color=\'", input$Colorete0, "\'>", nombres[cual], "</font>", "</i>")
 				if (input$negrilla == FALSE) {
 					nominal <- c("</b>", nominal, "<b>")
 				}	
 			} else {
-				nominal<- nombres[cual]
+				nominal <- c("<font color=\'", input$Colorete0, "\'>", nombres[cual], "</font>")
 				if (input$negrilla == FALSE) {
 					nominal <- c("</b>", nominal, "<b>")
 				}
 			}
 			
 			if (input$formato == "format1") {
-				frase <- c(frase, "<font size=\'", tamandua3, "\' ", "face=\'", input$tipito1, "\'>", codi, ". ", nominal, combi, "</font>", '<br/>')
+				frase <- c(frase, "<font size=\'", tamandua3, "\' ", "face=\'", input$tipito1, "\'>", "<font color=\'", input$Colorete0, "\'>", codi, ". ", "</font>", nominal, combi, "</font>", '<br/>')
 			} else if (input$formato == "format2") {
 				espacios <- maximiliano - (length(strsplit((nombres[cual]), "")[[1]]) + length(strsplit(datafono$DMC[codi], "")[[1]]) + 1) 
 				frase <- c(frase, "<font size=\'", tamandua3, "\' ", "face=\'", input$tipito1, "\'>", nominal, combi, "</font>", rep('&nbsp;', espacios) )
