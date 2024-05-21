@@ -165,4 +165,5 @@ library(UITOTO)
 	...`r emo::ji("woman_construction_worker")``r emo::ji("construction")``r emo::ji("man_construction_worker")`
 
 ## `r emo::ji("memo")` Citation
+
 - Torres, A., Lee, L., Srivathsan, A., & Meier, R. (2024). UITOTO: User Interface for Optimal Molecular Diagnoses in High-Throughput Taxonomy (v1.0.0). Zenodo. [https://doi.org/10.5281/zenodo.11236953](https://doi.org/10.5281/zenodo.11236953)
