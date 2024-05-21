@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Version-Number](https://img.shields.io/github/r-package/v/atorresgalvis/UITOTO?label=UITOTO (Dev))](https://github.com/atorresgalvis/UITOTO)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11236953.svg)](https://doi.org/10.5281/zenodo.11236953)
 <!-- badges: end -->
 
 The [**```UITOTO```**](https://github.com/atorresgalvis/UITOTO) [R](https://www.r-project.org/) package addresses the challenges associated with finding, testing, and visualizing reliable Diagnostic Molecular Combinations (DMCs), especially those arising from high-throughput taxonomy. The package also features a user-friendly [Shiny](https://shiny.posit.co/) App that can be accessed [online](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) or locally in [RStudio](https://posit.co/products/open-source/rstudio/).
