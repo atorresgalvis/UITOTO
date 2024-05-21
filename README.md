@@ -6,7 +6,8 @@
 
 <!-- badges: start -->
 <p align=center>
-<a href="https://github.com/atorresgalvis/UITOTO"><img src="https://img.shields.io/github/r-package/v/atorresgalvis/UITOTO?label=UITOTO%20(Dev)"></a>  
+<a href="https://github.com/atorresgalvis/UITOTO"><img src="https://img.shields.io/github/r-package/v/atorresgalvis/UITOTO?label=UITOTO%20(Dev)"></a> 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11236953.svg)](https://doi.org/10.5281/zenodo.11236953)
 </p>
 <!-- badges: end -->
 
