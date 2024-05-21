@@ -220,3 +220,6 @@ library(UITOTO)
   …👷‍♀️🚧👷‍♂️
 
 ## 📝 Citation
+
+- Torres, A., Lee, L., Srivathsan, A., & Meier, R. (2024). UITOTO: User Interface for Optimal Molecular Diagnoses in High-Throughput Taxonomy (v1.0.0). Zenodo. [https://doi.org/10.5281/zenodo.11236953](https://doi.org/10.5281/zenodo.11236953)	
+
