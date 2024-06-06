@@ -64,24 +64,58 @@ Unaligned <- tabPanel(title = "Align + Identify",
 							 )
 		),
 			column(2,
-				fileInput("DMCs2", "File with the available DMCs (e.g. Output from the OpDMC approach):", accept = ".csv"),
+				fileInput("DMCs2",
+					label = tags$span(
+					"File with the available DMCs", 
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "The name of the CSV file that contains the available DMCs (e.g., Output from the OpDMC approach)."
+					), ":"),			
+					accept = c(".csv")
+				),
 			),	
 			column(2,
-				fileInput("somebody", "Fasta file with sequences used for obtaining the DMCs included in the previous file:", accept = c(".fas", ".fasta", ".fs", ".FAS", ".FASTA", ".FS")),
+				fileInput("somebody",
+					label = tags$span(
+					"Fasta file with the aligned sequences", 
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "The name of the fasta file with the alingment used for obtaining the DMCs."
+					), ":"),			
+					accept = c(".fas", ".fasta", ".fs", ".FAS", ".FASTA", ".FS")
+				),
 			),
 			column(2,
-				fileInput("nobody2", "Fasta file with specimens to be identified (it should contain at least one specimen):", accept = c(".fas", ".fasta", ".fs", ".FAS", ".FASTA", ".FS")),
+				fileInput("nobody2",
+					label = tags$span(
+					"Fasta file with specimens to be identified", 
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "The name of the fasta file with the sequences/specimens to be identified (it should contain at least one specimen)."
+					), ":"),			
+					accept = c(".fas", ".fasta", ".fs", ".FAS", ".FASTA", ".FS")
+				),
 			),
 			column(2,
-				sliderInput("subopt3", "Maximum mismatches allowed:",
+				sliderInput("subopt3", 
+					label = tags$span(
+					"Maximum mismatches allowed",
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "The maximum number of mismatches allowed for the identification step."
+					), ":"),
 					min = 0, max = 8,
 					value = 1, step = 1
-				),	
+				),
 			),
 			column(3,
-				textInput("OutName3", label = "Name of the output file:", value = "IdentificationOutput.csv"),
+				textInput("OutName3", label = "Name of the identification output file:", value = "IdentificationOutput.csv"),
 				textInput("OutMiss1", label = "Name of the file for missing data information:", value = "LogMissing.csv"),
-				textInput("OutNameAli", label = "Name of the final alignment file:", value = "ResultingAlignment.fasta"),
+				textInput("OutNameAli", label = "Name of the final alignment output file:", value = "ResultingAlignment.fasta"),
 			),
 			column(1,
 				actionButton("do3", "Run!", icon("computer"),
@@ -91,40 +125,82 @@ Unaligned <- tabPanel(title = "Align + Identify",
 	h4("Pairwise sequence alignment settings:"),
 	fixedRow(	
 			column(2,
-				sliderInput("perfect", "Reward for aligning 2 matching nucleotides:",
+				sliderInput("perfect", 
+					label = tags$span(
+					"Reward for aligning matching nucleotides",
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "Numeric value giving the reward for aligning two matching nucleotides in the alignment."
+					), ":"),
 					min = 1, max = 10,
 					value = 5, step = 1
-				),	
+				),
 			),
 			column(2,
-				sliderInput("misma", "Cost for aligning 2 mismatched nucleotides:",
+				sliderInput("misma", 
+					label = tags$span(
+					"Cost for aligning mismatched nucleotides",
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "Numeric value giving the cost for aligning two mismatched nucleotides in the alignment."
+					), ":"),
 					min = 0, max = 10,
 					value = 0, step = 1
-				),	
+				),			
 			),
 			column(2,
-				sliderInput("open", "Cost for opening a gap:",
+				sliderInput("open", 
+					label = tags$span(
+					"Cost for opening a gap",
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "Numeric value giving the cost for opening a gap in the alignment."
+					), ":"),
 					min = -25, max = 0,
 					value = -14, step = 1
-				),	
+				),
 			),
 			column(2,
-				sliderInput("increment", "Cost for extending an open gap:",
+				sliderInput("increment", 
+					label = tags$span(
+					"Cost for extending an open gap",
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "Numeric value giving the cost for extending an open gap in the alignment."
+					), ":"),
 					min = -15, max = 0,
 					value = -2, step = 1
-				),	
+				),
 			),
 			column(2,
-				sliderInput("gapo", "Exponent for gap cost function:",
+				sliderInput("gapo", 
+					label = tags$span(
+					"Exponent for gap cost function",
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "Numeric value specifying the exponent to use in the gap cost function (see the function AlignProfiles of the DECIPHER package)."
+					), ":"),
 					min = -5, max = 5,
 					value = -1, step = 1
-				),	
+				),
 			),
 			column(2,
-				sliderInput("terminal", "Cost for allowing leading and trailing gaps:",
+				sliderInput("terminal", 
+					label = tags$span(
+					"Cost for allowing leading and trailing gaps",
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "Numeric value giving the cost for allowing leading and trailing gaps (\"-\" or \".\" characters) in the alignment."
+					), ":"),
 					min = -15, max = 0,
 					value = 0, step = 1
-				),	
+				),
 			),			
 			column(2,
 				radioButtons("Agata", "Align against the reference/target matrix using:", choices = c("First taxon", "All sequences available"), selected = "First taxon", inline = F),	
