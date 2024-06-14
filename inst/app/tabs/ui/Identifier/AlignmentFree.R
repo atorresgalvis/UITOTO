@@ -3,22 +3,54 @@ AlignmentFree <- tabPanel(title = "Alignment-free",
 	hr(),
 	fixedRow(	
 			column(2,
-				fileInput("DMCs3", "File with the available DMCs (e.g. Output from the OpDMC approach):", accept = ".csv"),
+				fileInput("DMCs3",
+					label = tags$span(
+					"File with the available DMCs (e.g. Output from the OpDMC approach)", 
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "The name of the CSV file that contains the available DMCs (e.g., Output from the OpDMC approach)."
+					), ":"),			
+					accept = c(".csv", ".CSV")
+				),
 			),	
 			column(2,
-				fileInput("nobody3", "Fasta file with specimens to be identified (it should contain at least one specimen):", accept = c(".fas", ".fasta", ".fs", ".FAS", ".FASTA", ".FS")),
+				fileInput("nobody3",
+					label = tags$span(
+					"Fasta file with specimens to be identified (the file should contain at least one specimen)", 
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "The name of the fasta file with the sequences/specimens to be identified."
+					), ":"),			
+					accept = c(".fas", ".fasta", ".fs", ".FAS", ".FASTA", ".FS")
+				),
 			),
 			column(2,
-				sliderInput("subopt4", "Maximum mismatches allowed:",
+				sliderInput("subopt4", 
+					label = tags$span(
+					"Maximum mismatches allowed",
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "The maximum number of mismatches allowed for the identification step."
+					), ":"),
 					min = 0, max = 3,
-					value = 0, step = 1
+					value = 1, step = 1
 				),	
 			),
 			column(2,
-				sliderInput("WinWidth", "Width of the sliding window:",
+				sliderInput("WinWidth", 
+					label = tags$span(
+					"Width of the sliding window",
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "Width of the sliding window expresed in number of sites."
+					), ":"),
 					min = 4, max = 40,
 					value = 20, step = 2
-				),	
+				),
 			),			
 			column(2,
 				textInput("OutName4", label = "Name of the output file:", value = "IdentificationOutput.csv"),
