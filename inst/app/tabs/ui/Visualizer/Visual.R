@@ -3,10 +3,28 @@ Visual <- tabPanel(title = "Visualize DMCs",
 	hr(),
 	fixedRow(	
 			column(2,
-				fileInput("DMCs10", "File with the available DMCs (e.g. Output from the OpDMC approach):", accept = ".csv"),
+				fileInput("DMCs10",
+					label = tags$span(
+					"File with the available DMCs (e.g. Output from the OpDMC approach)", 
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "The name of the CSV file that contains the available DMCs (e.g., Output from the OpDMC approach)."
+					), ":"),			
+					accept = c(".csv", ".CSV")
+				),
 			),	
 			column(2,
-				fileInput("somebody10", "Fasta file with sequences used for obtaining the DMCs included in the previous file:", accept = c(".fas", ".fasta", ".fs", ".FAS", ".FASTA", ".FS")),
+				fileInput("somebody10",
+					label = tags$span(
+					"Fasta file with the sequences to draw the DMCs of the species included in the previous file", 
+					tags$i(
+						class = "glyphicon glyphicon-info-sign", 
+						style = "color:#91bd0d;",
+						title = "The name of the fasta file with specimens to draw the DMCs (the file should contain at least one specimen for each species)."
+					), ":"),			
+					accept = c(".fas", ".fasta", ".fs", ".FAS", ".FASTA", ".FS")
+				),
 			),
 			column(2,
 				sliderTextInput("tamandua3", "Font size for sequence titles (aprox. pt):",
@@ -37,7 +55,16 @@ Visual <- tabPanel(title = "Visualize DMCs",
 				textInput("Colorete2", label = "Hex color code for DMC's sites:", value = "#91bd0d"),
 			),
 			column(2,
-			       textInput("clavecita", label = "Use the sequences containing the string/word:", value = "_holotype"),
+					textInput("clavecita",
+						label = tags$span(
+						"Use the sequences containing the string/word!!!", 
+						tags$i(
+							class = "glyphicon glyphicon-info-sign", 
+							style = "color:#91bd0d;",
+							title = "The specimens chosen to draw the DMCs must contain this string in their names. Check that the fasta file contain at least one sequence with this string for each one of the species provided in the DMCs file."
+						), ":"),			
+						value = "_holotype"
+					),
 			       selectInput("mayus", "Letter case:",
 			                   c("All uppercase" = "uppercase",
 			                     "All lowercase" = "lowercase",
@@ -103,13 +130,13 @@ Visual <- tabPanel(title = "Visualize DMCs",
       column(2,
 				fixedRow(
 				checkboxInput("CombI", "Include DMCs after sequence names", TRUE),
-				checkboxInput("italica", "Sequence names (in italic)", TRUE),
+				checkboxInput("italica", "Sequence names in italic", TRUE),
 				)
 			),
 			column(2,
 			       fixedRow(
-			         checkboxInput("negrilla", "Sequence names (in bold)", TRUE),
-			         checkboxInput("negrilla2", "Sequence sites (in bold)", FALSE),
+			         checkboxInput("negrilla", "Sequence names in bold", TRUE),
+			         checkboxInput("negrilla2", "Sequence sites in bold", FALSE),
 			       )
 			),
 	),	
