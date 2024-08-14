@@ -12,7 +12,7 @@ observeEvent(input$Presentation,{
     modalDialog(
       size = "l",
       title = "Presentation slides",
-      tags$iframe(style = "height:400px; width:100%; scrolling = yes", src = "pdf/PreUITOTO.pdf"),
+      tags$iframe(style = "height:400px; width:100%; scrolling = yes", src = "pdf/Torres_SlidesHennigMeeting2024.pdf"),
       footer = tagList(modalButton("Close"))
     ))
 })
