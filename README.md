@@ -324,7 +324,7 @@ library(UITOTO)
   …👷‍♀️🚧👷‍♂️
 
 
-## 📝 Citation
+## 📝 Citation and references
 - Amorim, D.S., Oliveira, S.S., Balbi, M.I.P.A., Ang, Y., Torres, A.,
   Yeo, D., Srivathsan, A., Meier, R. (2024). An integrative taxonomic
   treatment of the Mycetophilidae (Diptera: Bibionomorpha) from
