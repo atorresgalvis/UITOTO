@@ -221,7 +221,7 @@ library(UITOTO)
   using [**```UITOTO```**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/), you
   can use these DMCs to identify unknown sequences. This functionality
   is accessible via the Shiny app Graphical User Interface (GUI) under
-  the module “Taxonomic verification and identification using DMCs” or
+  the module *Taxonomic verification and identification using DMCs* or
   through the command-line functions: `Identifier`, `ALnID`, and
   `IdentifierU`.
 
