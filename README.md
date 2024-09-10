@@ -217,6 +217,28 @@ library(UITOTO)
 
 - 🧬 **Identifying unknown –aligned and unaligned– sequences using DMCs**
 
+  Once you have identified Diagnostic Molecular Combinations (DMCs)
+  using [\*\*`UITOTO`](https://github.com/atorresgalvis/UITOTO)\*\*, you
+  can use these DMCs to identify unknown sequences. This functionality
+  is accessible via the Shiny app graphical interface under the module
+  “Taxonomic verification and identification using DMCs” or through the
+  command-line functions: `Identifier`, `ALnID`, and `IdentifierU`.
+
+  The `Identifier` function identifies sequences based on their match
+  with the pool of DMCs provided by the user. The `ALnID` function
+  operates similarly to the `Identifier` function, but it aligns the
+  unaligned unknown sequences from a FASTA file with the sequences used
+  to derive the DMCs (e.g., obtained from the first module of
+  [\*\*`UITOTO`](https://github.com/atorresgalvis/UITOTO)\*\*). Finally,
+  the `IdentifierU` function employs an alignment-free approach, using a
+  dynamic sliding window to iteratively compare extracted patterns with
+  the provided DMC patterns. These functions allow users to set the
+  maximum number of permissible mismatches between the DMCs and the
+  unknown sequences.
+
+
+
+
   …👷‍♀️🚧👷‍♂️
 
 ## 📝 Citation
