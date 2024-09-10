@@ -217,24 +217,50 @@ library(UITOTO)
 
 - 🧬 **Identifying unknown –aligned and unaligned– sequences using DMCs**
 
-  Once you have identified Diagnostic Molecular Combinations (DMCs)
-  using [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO), you
+    Once you have identified Diagnostic Molecular Combinations (DMCs)
+  using [**```UITOTO```](https://github.com/atorresgalvis/UITOTO)**, you
   can use these DMCs to identify unknown sequences. This functionality
-  is accessible via the Shiny app graphical interface under the module
-  “Taxonomic verification and identification using DMCs” or through the
-  command-line functions: `Identifier`, `ALnID`, and `IdentifierU`.
+  is accessible via the Shiny app Graphical User Interface (GUI) under
+  the module “Taxonomic verification and identification using DMCs” or
+  through the command-line functions: `Identifier`, `ALnID`, and
+  `IdentifierU`.
 
-  The `Identifier` function identifies sequences based on their match
-  with the pool of DMCs provided by the user. The `ALnID` function
-  operates similarly to the `Identifier` function, but it aligns the
-  unaligned unknown sequences from a FASTA file with the sequences used
-  to derive the DMCs (*e.g.*, obtained from the first module of
-  [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO). Finally,
-  the `IdentifierU` function employs an alignment-free approach, using a
-  dynamic sliding window to iteratively compare extracted patterns with
-  the provided DMC patterns. These functions allow users to set the
-  maximum number of permissible mismatches between the DMCs and the
-  unknown sequences.
+  The `Identifier` function is the simplest of the three, designed
+  specifically for aligned sequences. It identifies unknown sequences by
+  matching them against a pool of DMCs provided by the user. Therefore,
+  it requires just two input files: a FASTA file with the unknown
+  sequences and a CSV file containing the DMCs. The input files should
+  be formatted as follows:
+
+  ``` r
+  >UnknownSequence1
+  aactttatacttcatttttggagcttgagcaggaatagttggtacttcactaagaattataattcgagctgaattagggcacccaggtgctttaattggtgatgatcaaatttataatgtaattgtaactgcacatgcatttattataattttttttatagttataccaattataataggaggatttggaaattgattagtacctttaatattaggagctcctgatatagcctttcctcgaataaataatataagattttgaatattacctccatctttaacactattattggcaagtagtatagtagaaaacggagctggaacaggatgaactgtctatcctccactttcttcaaatattgctcatagtggagcttcggttgatttagcaattttttctctccacttagctggtatctcatctattttaggagctgtaaattttattacaacaattattaatatacgttcatcaggaatcacttttgatcgaatacctttatttgtatgatcagttggaattacagctattttactacttctttctttaccagtattagccggagctattactatacttttaacagatcgaaattttaatactgccttttttgaccctgccggaggaggagatccaattctttatcaacatttattt
+  >UnknownSequence2
+  aacgttatattttatttttggtgcctgagctggaatagtgggtacttctcttagtatcataattcgagcagaattgggtcaccctggtgcattaattggggacgatcaaatttataatgtaattgttaccgctcatgcatttattataattttctttatagtaataccaattataataggaggatttggaaattgattagtacctttaatactaggagctcctgatatagcttttcctcgaataaataatataagtttttgaatattacccccatctttaactcttttattagccagaagtatagtagaaaatggggctggaacaggatgaactgtttatcctccactttcttctagaatcgcccatagaggagcttctgtagacttagcaattttttctcttcatttagcgggaatttcctcaattttaggagctgttaattttattactactattattaatatacgatcatcaggaattacttttgaccgaatacctttatttgtctgatctgttggaattacagctcttttattacttttatcattaccagtattagctggagcaattactatattattaacagatcgaaattttaacacctcattttttgatccagctggaggaggagaccctattctttatcaacatttattt
+  >UnknownSequence3
+  aacgttatatttcatttttggagcatgagctggaatagtaggaacatcattaagaattataattcgagccgaattaggacatcctggtgctttaattggtgacgatcaaatttataatgtaattgttactgcacatgctttcattataattttctttatagtaatacctattataatgggaggatttggtaattgacttgtacctttaatattaggagctcctgatatagccttccctcgaataaataatataagtttttgaatattacctccttctttaactcttttattagccagaagtatagtagaaaatggagctgggacaggatgaacagtttacccacctctttcttctagtattgctcatagtggggcatctgtagatttagcaattttctcattacaccttgctggaatttcttcaattttaggagctgtaaattttattactacaattattaatatgcgagcttcaggaattacttttgatcgaatacctttatttgtttgatcagtaggaattacagctttactccttttattatcacttcctgttttagcaggagctattactatacttttaactgatcgaaattttaacacttctttcttcgatccagcaggaggaggagatccaattttatatcaacacttattt
+  >UnknownSequence4
+  aactttatattttatttttggggcatgagcaggaatagtgggaacttctttaagaataataattcgtgctgaattaagccaccccggtgctttaattggagatgatcaaatttacaatgttattgtcactgcccatgcatttattataattttttttatagttatacctattataataggtggatttggtaattgacttgtccctctaatactaggagcacctgatatagcttttcctcgtataaataatataagtttttgaatacttcctccatccctaacattacttattgcaagaagtatagtagaaaatggggctggtacaggttgaacagtttaccctcccctatcctcaagaattgctcatagtggcgcttctgttgatctagctattttttctcttcatatagcaggaatttcttctattttaggagcagttaattttattacaacaattattaatatacgatcaataggaatcacttttgaccgtatacctttatttgtttgatcagttggtattactgccattctattattactatcattgcctgttttagcaggagctattacaatacttttaacagaccgaaactttaacacttctttttttgatccggccggtggtggagacccaatcttataccaacatttattc
+  ```
+
+  ``` r
+  "","Species","DMC","Alter-DMC"
+  "1","Species_1","[58: C, 85: T, 127: G, 247: T, 274: C]","[1: G, 2: C, 127: G, 274: C, 313: T]"
+  "2","Species_2","[85: T, 106: G, 118: C, 268: C]","[106: G, 118: C, 169: T, 172: T]"
+  "3","Species_3","[92: A, 170: A, 184: A, 208: C, 256: C, 283: G]","[7: A, 62: C, 70: A, 92: A, 185: C, 283: G]"
+  ```
+
+  👀 Please note that the DMCs file produced by
+  [**```UITOTO```](https://github.com/atorresgalvis/UITOTO)** (*i.e.*,
+  the output of the `OpDMC` function, as detailed in the previous
+  section) includes three columns: “Species,” “DMC,” and “Alter-DMC.”
+  This is because the file provides both the primary/final DMC (“DMC”
+  column) and an alternative DMC (“Alter-DMC” column) for each species.
+  However, the `Identifier` function only requires the “Species” and
+  “DMC” columns; making the “Alter-DMC” column optional. Thus, DMC files
+  generated by other software can also be used in
+  [**```UITOTO```](https://github.com/atorresgalvis/UITOTO)** as long as
+  they include the two mandatory columns.
 
 
 
