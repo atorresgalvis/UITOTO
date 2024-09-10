@@ -262,10 +262,36 @@ library(UITOTO)
   [**```UITOTO```**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/) as long as
   they include the two mandatory columns.
 
+  Once we have the two mandatory input files, we can run the
+  `Identifier` function. following its syntax outlined below:
 
+  ``` r
+  Identifier(
+      DMC_Output = "OpDMC_output.csv",
+      dataset = "DatasetAlignedQuery.fas",
+      mismatches = 1,
+      OutName = "IdentificationOutput.csv",
+      MissLogFile = "LogMissing.csv"
+  )
+  ```
+
+  As we mentioned, both input files are mandatory. However, the
+  remaining arguments of the function are optional. The `mismatches`
+  argument defines the maximum number of mismatches allowed between the
+  DMC and the unknown sequences, with a default value of 1. `OutName`
+  allows specifying the name of the output CSV file for the
+  identification results (default is “IdentificationOutput.csv”), while
+  `MissLogFile` defines the file name for logging comparisons that could
+  not be performed due to missing data; setting this to “none” skips
+  logging, which is not recommended for alignments with missing or gappy
+  regions. Detailed information for each argument can be found in the
+  [package
+  manual](https://github.com/atorresgalvis/UITOTO/blob/main/UITOTO_1.0.0.pdf),
+  or by typing `?Identifier` in the console.
 
 
   …👷‍♀️🚧👷‍♂️
+
 
 ## 📝 Citation
 
