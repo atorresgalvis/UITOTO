@@ -289,6 +289,15 @@ library(UITOTO)
   manual](https://github.com/atorresgalvis/UITOTO/blob/main/UITOTO_1.0.0.pdf),
   or by typing `?Identifier` in the console.
 
+  💡 **Note:** The `ALnID` function operates similarly to the
+  `Identifier` function, but first it aligns unaligned unknown sequences
+  from a FASTA file with the sequences used to derive the DMCs. This
+  function is particularly useful when the unknown sequences are not
+  aligned with each other or with the sequences used to derive the DMCs.
+  Finally, the `IdentifierU` function employs an alignment-free
+  approach, using a dynamic sliding window to iteratively compare
+  patterns with the provided DMC patterns
+
 
   …👷‍♀️🚧👷‍♂️
 
