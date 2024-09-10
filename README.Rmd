@@ -79,7 +79,7 @@ library(UITOTO)
 ```
 
 ## `r emo::ji("woman_technologist")` Get Started
-- `r emo::ji("man_running")` **Running the [**```UITOTO```**](https://github.com/atorresgalvis/UITOTO)** **Shiny app locally:**
+- `r emo::ji("man_running")` **Running the [**```UITOTO```**](https://github.com/atorresgalvis/UITOTO)** **Shiny app locally**
 
 	```{r , eval=F, echo=T}
 	runUITOTO()
