@@ -165,8 +165,8 @@ library(UITOTO)
 	Once you have identified Diagnostic Molecular Combinations (DMCs) using 
 	[**```UITOTO```](https://github.com/atorresgalvis/UITOTO)**, 
 	you can use these DMCs to identify unknown sequences. This functionality is accessible via 
-	the Shiny app Graphical User Interface (GUI) under the module "Taxonomic verification and identification 
-	using DMCs" or through the command-line functions: ```Identifier```, ```ALnID```, and 
+	the Shiny app Graphical User Interface (GUI) under the module *Taxonomic verification and identification 
+	using DMCs* or through the command-line functions: ```Identifier```, ```ALnID```, and 
 	```IdentifierU```. 
 	
 	The ```Identifier``` function is the simplest of the three, designed specifically for aligned sequences. 
