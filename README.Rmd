@@ -231,10 +231,25 @@ library(UITOTO)
 	Finally, the ```IdentifierU``` function employs an alignment-free approach,	using a dynamic 
 	sliding window to iteratively compare patterns with the provided DMC patterns.
 
+	`r emo::ji("bar_chart")` **Performance evaluation and cross-validation** `r emo::ji("chart_increasing")` \
+	In addition to identifying unknown sequences, DMCs can be used to evaluate their performance 
+	through cross-validation. This involves assessing the accuracy and reliability of the DMCs by 
+	applying them to a separate set of sequences and measuring how well they identify these sequences. 
+	To conduct this evaluation, you should first split your dataset into training and testing datasets. 
+	The training dataset is then used to derive the DMCs (*e.g.*, by using the `OpDMC` function), while 
+	the testing dataset is used to assess their performance. Although [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) 
+	does not include a built-in cross-validation feature or module, you can manually split your data 
+	and use the `ALnID` or `Identifier` functions to evaluate the DMCs. Additionally, you may follow 
+	the cross-validation pipeline and scripts developed in the [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) software 
+	article (see citation section below), where metrics commonly used in machine learning techniques, 
+	such as discriminant analysis and deep learning, were employed to evaluate the effectiveness of 
+	DMCs as a classification tool. This pipeline was also used by Amorin *et al.*, (2024).
+
+- `r emo::ji("dna")` **Visualizing DMCs**
 
 	...`r emo::ji("woman_construction_worker")``r emo::ji("construction")``r emo::ji("man_construction_worker")`
+	
 
-
-## `r emo::ji("memo")` Citation
-
+## `r emo::ji("memo")` Citation and references
+- Amorim, D.S., Oliveira, S.S., Balbi, M.I.P.A., Ang, Y., Torres, A., Yeo, D., Srivathsan, A., Meier, R. (2024). An integrative taxonomic treatment of the Mycetophilidae (Diptera: Bibionomorpha) from Singapore reveals 115 new species on 730 km². *Integrative Systematics: Stuttgart Contributions to Natural History*, *in press*.
 - Torres, A., Lee, L., Srivathsan, A., & Meier, R. (2024). UITOTO: User Interface for Optimal Molecular Diagnoses in High-Throughput Taxonomy (v1.0.0). Zenodo. [https://doi.org/10.5281/zenodo.11236953](https://doi.org/10.5281/zenodo.11236953)
