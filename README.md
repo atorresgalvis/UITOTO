@@ -228,7 +228,7 @@ library(UITOTO)
   with the pool of DMCs provided by the user. The `ALnID` function
   operates similarly to the `Identifier` function, but it aligns the
   unaligned unknown sequences from a FASTA file with the sequences used
-  to derive the DMCs (e.g., obtained from the first module of
+  to derive the DMCs (*e.g.*, obtained from the first module of
   [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO). Finally,
   the `IdentifierU` function employs an alignment-free approach, using a
   dynamic sliding window to iteratively compare extracted patterns with
