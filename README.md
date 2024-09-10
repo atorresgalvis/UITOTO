@@ -263,7 +263,7 @@ library(UITOTO)
   they include the two mandatory columns.
 
   Once we have the two mandatory input files, we can run the
-  `Identifier` function. following its syntax outlined below:
+  `Identifier` function following its syntax outlined below:
 
   ``` r
   Identifier(
