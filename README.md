@@ -319,9 +319,49 @@ library(UITOTO)
   classification tool. This pipeline was also used by Amorin *et al.*,
   (2024).
 
-- 🧬 **Visualizing DMCs**
+- 🖍 **Visualizing DMCs** 👩‍🎨🖌
 
-  …👷‍♀️🚧👷‍♂️
+  The “Visualize DMCs” module in
+  [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO) is designed to
+  assist users in generating detailed, publication-quality
+  visualizations of Diagnostic Molecular Combinations (DMCs). This
+  module is accessible exclusively via the Shiny app interface and
+  offers interactive features that facilitate the comparison and
+  interpretation of DMCs across various taxa. Users can customize
+  visualizations with options such as color schemes, plot types, and
+  annotation features, tailoring the output to meet their specific
+  needs. Additionally, the visualizations can be exported in
+  high-resolution formats, making them suitable for inclusion in
+  scientific publications and presentations.
+
+  To use the module, open the
+  [**`UITOTO`**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/)
+  Shiny app and navigate to the “Visualize DMCs” tab. Begin by importing
+  your DMC data file, which can be obtained using the `OpDMC` function
+  (see above), along with a FASTA file containing the sequences on which
+  the DMCs will be illustrated. Ensure that the FASTA file includes at
+  least one specimen/sequence for each species represented in the DMC
+  file, and that these sequences contain a recognizable string in their
+  names; by default, this string is “\_holotype” (*i.e.*, verify that
+  the FASTA file includes at least one sequence with this
+  recognition-string for each species listed in the DMCs file).
+
+  Once your data is loaded, utilize the interactive tools to create
+  plots and tables, customizing the visual appearance to your
+  preference. You can then export your visualizations in various formats
+  or directly copy and paste them into your manuscripts or
+  presentations. Here is an example of a visualization in the
+  [**`UITOTO`**](https://atorresgalvis.shinyapps.io/MolecularDiagnoses/)
+  Shiny app:
+
+  <div class="figure">
+
+  <img src="inst/app/www/img/Figure3.PNG" alt="Module 'Visualize DMCs' of the UITOTO Shiny app." width="100%" />
+  <p class="caption">
+  Module ‘Visualize DMCs’ of the UITOTO Shiny app.
+  </p>
+
+  </div>
 
 
 ## 📝 Citation and references
