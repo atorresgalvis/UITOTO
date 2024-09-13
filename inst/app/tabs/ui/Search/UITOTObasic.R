@@ -17,7 +17,7 @@ Search <- tabPanel(title = "Find DMCs",
 			),
 			fileInput("species",  
 				label = tags$span(
-                  "File with the query-taxa", 
+                  "CSV file listing the query-taxa", 
                   tags$i(
                     class = "glyphicon glyphicon-info-sign", 
                     style = "color:#91bd0d;",
@@ -41,7 +41,7 @@ Search <- tabPanel(title = "Find DMCs",
 			textInput("OutName", label = "Name of the output file:", value = "OpDMC_output.csv"),
 			sliderInput("iter", 
 				label = tags$span(
-                  "Iterations x 1000 (i.e. 5 = 5000)",
+                  "Number of iterations x 1000 (i.e., 5 = 5000)",
                   tags$i(
                     class = "glyphicon glyphicon-info-sign", 
                     style = "color:#91bd0d;",
@@ -52,11 +52,11 @@ Search <- tabPanel(title = "Find DMCs",
 			),
 			sliderInput("MnLen", 
 				label = tags$span(
-					"Minimum length",
+					"Minimum DMC length",
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
-						title = "This is the minimum length that the resulting DMCs must have."
+						title = "This is the minimum length (in sites) that the resulting DMCs must have."
 					), 
 					":"
 				),
@@ -69,7 +69,7 @@ Search <- tabPanel(title = "Find DMCs",
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
-						title = "This is the minimum number of exclusive character states that the resulting DMCs must have.
+						title = "This is the minimum number of exclusive character (i.e., site) states that the resulting DMCs must have.
 This implies that the resultant DMCs will possess, at minimum, the specified number of 
 exclusive character states when compared to other species."
 					), 
