@@ -66,7 +66,7 @@ Unaligned <- tabPanel(title = "Align + Identify",
 			column(2,
 				fileInput("DMCs2",
 					label = tags$span(
-					"File with the available DMCs", 
+					"CSV file containing the available DMCs", 
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
@@ -102,7 +102,7 @@ Unaligned <- tabPanel(title = "Align + Identify",
 			column(2,
 				sliderInput("subopt3", 
 					label = tags$span(
-					"Maximum mismatches allowed",
+					"Maximum number of mismatches allowed",
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
@@ -153,7 +153,7 @@ Unaligned <- tabPanel(title = "Align + Identify",
 			column(2,
 				sliderInput("open", 
 					label = tags$span(
-					"Cost for opening a gap",
+					"Cost for opening a new sequence gap",
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
@@ -166,7 +166,7 @@ Unaligned <- tabPanel(title = "Align + Identify",
 			column(2,
 				sliderInput("increment", 
 					label = tags$span(
-					"Cost for extending an open gap",
+					"Cost for extending an open sequence gap",
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
@@ -179,7 +179,7 @@ Unaligned <- tabPanel(title = "Align + Identify",
 			column(2,
 				sliderInput("gapo", 
 					label = tags$span(
-					"Exponent for gap cost function",
+					"Exponent used for the gap cost function",
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
