@@ -5,7 +5,7 @@ AlignmentFree <- tabPanel(title = "Alignment-free",
 			column(2,
 				fileInput("DMCs3",
 					label = tags$span(
-					"File with the available DMCs (e.g. Output from the OpDMC approach)", 
+					"CSV file containing the available DMCs", 
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
@@ -17,7 +17,7 @@ AlignmentFree <- tabPanel(title = "Alignment-free",
 			column(2,
 				fileInput("nobody3",
 					label = tags$span(
-					"Fasta file with specimens to be identified (the file should contain at least one specimen)", 
+					"Fasta file with specimens to be identified", 
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
