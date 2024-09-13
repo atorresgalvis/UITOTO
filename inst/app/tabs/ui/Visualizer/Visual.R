@@ -118,7 +118,7 @@ Visual <- tabPanel(title = "Visualize DMCs",
 					"Format 3 (fixed alignment)" = "format3",
 					"Format 4 (table)" = "format4"
 					), selected= "format1" ),
-				selectInput("NucleoColor", "Nucleotides color (available for the Format 3):",
+				selectInput("NucleoColor", "Nucleotide colors for output format 3:",
 					c("Palette color 1" = "Pallete1",
 					"Palette color 2" = "Pallete2",
 					"Palette color 3" = "Pallete3",
