@@ -5,7 +5,7 @@ Aligned <- tabPanel(title = "Aligned sequences",
 			column(3,
 				fileInput("DMCs",
 					label = tags$span(
-					"File with the available DMCs (e.g. Output from the OpDMC approach)", 
+					"CSV file containinig the available DMCs", 
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
@@ -17,7 +17,7 @@ Aligned <- tabPanel(title = "Aligned sequences",
 			column(3,
 				fileInput("nobody",
 					label = tags$span(
-					"Fasta file with specimens to be identified (the file should contain at least one specimen)", 
+					"Fasta file with specimens to be identified", 
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
@@ -29,7 +29,7 @@ Aligned <- tabPanel(title = "Aligned sequences",
 			column(3,
 				sliderInput("subopt2", 
 					label = tags$span(
-					"Maximum mismatches allowed",
+					"Maximum number of mismatches allowed",
 					tags$i(
 						class = "glyphicon glyphicon-info-sign", 
 						style = "color:#91bd0d;",
