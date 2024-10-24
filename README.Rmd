@@ -40,7 +40,7 @@ if (any(installed_packages == FALSE)) {
 As [**```UITOTO```**](https://github.com/atorresgalvis/UITOTO) uses some packages from [Bioconductor](https://www.bioconductor.org) (Biostrings and DECIPHER), it is highly recommended to follow the instructions included in https://www.bioconductor.org/install/. The BiocManager package is used for managing [Bioconductor](https://www.bioconductor.org) resources, so to get 
 it you should use:
 ``` {r, eval=F, echo=T}
-# Updated to 17/04/2024.
+# Updated to 24/10/2024.
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install(version = "3.19")
