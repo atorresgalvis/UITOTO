@@ -61,7 +61,7 @@ should use:
 # Updated to 24/10/2024.
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install(version = "3.19")
+BiocManager::install(version = "3.20")
 ```
 
 After that, you can install
