@@ -58,7 +58,7 @@ package is used for managing
 should use:
 
 ``` r
-# Updated to 17/04/2024.
+# Updated to 24/10/2024.
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install(version = "3.19")
