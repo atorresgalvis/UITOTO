@@ -366,9 +366,9 @@ library(UITOTO)
 
 ## 📝 Citation and references
 - Amorim, D.S., Oliveira, S.S., Balbi, M.I.P.A., Ang, Y., Torres, A.,
-  Yeo, D., Srivathsan, A., Meier, R. (2024). An integrative taxonomic
+  Yeo, D., Srivathsan, A., Meier, R. (2025). An integrative taxonomic
   treatment of the Mycetophilidae (Diptera: Bibionomorpha) from
   Singapore reveals 115 new species on 730 km². *Integrative
   Systematics: Stuttgart Contributions to Natural History*, *in press*.
-- Torres, A., Lee, L., Srivathsan, A., & Meier, R. (2024). UITOTO: User Interface for Optimal Molecular Diagnoses in High-Throughput Taxonomy (v1.0.0). Zenodo. [https://doi.org/10.5281/zenodo.11236953](https://doi.org/10.5281/zenodo.11236953)	
+- Torres, A., Lee, L., Srivathsan, A., & Meier, R. (2025). UITOTO: a new software for molecular diagnoses in species descriptions. bioRxiv. [https://doi.org/10.1101/2025.03.26.645453](https://doi.org/10.1101/2025.03.26.645453)
 
