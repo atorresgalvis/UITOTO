@@ -1,6 +1,6 @@
 ## Title: ALnID
 ## Version: 0.1-1
-## Date: 2024-05-15
+## Date: 2025-05-09
 ## Author: Ambrosio Torres (Researcher [Ctr. Integr. Biodivers. Discov. - Museum für Naturkunde, Berlin, Germany)
 ## Maintainer: Ambrosio Torres <atorresgalvis@gmail.com> <Ambrosio.TorresGalvis@mfn.berlin>
 ## Depends: R version (>= 4.2.2). Packages   seqinr (4.2-23); Biostrings (2.66.0); DECIPHER (2.30.0)
