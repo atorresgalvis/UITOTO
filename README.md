@@ -370,5 +370,6 @@ library(UITOTO)
   treatment of the Mycetophilidae (Diptera: Bibionomorpha) from
   Singapore reveals 115 new species on 730 km². *Integrative
   Systematics: Stuttgart Contributions to Natural History*, *in press*.
-- Torres, A., Lee, L., Srivathsan, A., & Meier, R. (2025). UITOTO: a new software for molecular diagnoses in species descriptions. bioRxiv. [https://doi.org/10.1101/2025.03.26.645453](https://doi.org/10.1101/2025.03.26.645453)
+- Torres, A., Lee, L., Srivathsan, A., & Meier, R. (2025). UITOTO: a software for generating molecular diagnoses for species descriptions. Cladistics. *in press*. [https://doi.org/10.1111/cla.70023](https://doi.org/10.1111/cla.70023)
+
 
