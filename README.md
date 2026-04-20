@@ -316,9 +316,8 @@ library(UITOTO)
   article (see citation section below), where metrics commonly used in
   machine learning techniques, such as discriminant analysis and deep
   learning, were employed to evaluate the effectiveness of DMCs as a
-  classification tool. This pipeline was also used by Amorin *et al.*,
-  (2025).[Amorin *et al.*,
-  (2025)](https://doi.org/10.18476/2025.752376)
+  classification tool. This pipeline was also used by [Amorin *et al.*,
+  (2025)](https://doi.org/10.18476/2025.752376).
 
 - 🖍 **Visualizing DMCs** 👩‍🎨🖌
 
