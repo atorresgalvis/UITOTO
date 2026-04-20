@@ -18,7 +18,7 @@ shinyUI(
         )
     ),
     ##-- Header ----
-    navbarPage(title = div(img(src="img/uitoto2.png",
+    navbarPage(title = div(img(src="img/uitoto3.png",
                                height = "80px"), style = "padding-left:10px;"),
                id = "navbar",
                selected = "home",
