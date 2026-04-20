@@ -10,7 +10,7 @@ shinyUI(
                 href = "https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro")
     ),
     ##-- Logo ----
-    list(tags$head(HTML('<link rel="icon", href="img/uitoto2.png",
+    list(tags$head(HTML('<link rel="icon", href="img/uitoto3.png",
                         type="image/png" />'))),
     div(style="padding: 1px 0px; width: '100%'",
         titlePanel(
@@ -18,7 +18,7 @@ shinyUI(
         )
     ),
     ##-- Header ----
-    navbarPage(title = div(img(src="img/uitoto3.png",
+    navbarPage(title = div(img(src="img/uitoto2.png",
                                height = "80px"), style = "padding-left:10px;"),
                id = "navbar",
                selected = "home",
