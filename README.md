@@ -12,7 +12,7 @@
 <!-- badges: end -->
 
 <p align=center>
-<a href="https://www.museumfuernaturkunde.berlin/en/science/research/dynamics-nature/centre-integrative-biodiversity-discovery"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/cibd_logo.png" alt="" width="22%"></a>
+<a href="https://cibdberlin.com/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/cibd_logo.png" alt="" width="22%"></a>
 &emsp;&emsp;
 <a href="https://www.museumfuernaturkunde.berlin/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/mfn_logo.png" alt="" width="20%"></a>
 </p>
@@ -370,6 +370,5 @@ library(UITOTO)
   treatment of the Mycetophilidae (Diptera: Bibionomorpha) from
   Singapore reveals 115 new species on 730 km². *Integrative Systematics: Stuttgart Contributions to Natural History*, 8(3): 1—318. [https://doi.org/10.18476/2025.752376](https://doi.org/10.18476/2025.752376)
 - Torres, A., Lee, L., Srivathsan, A., & Meier, R. (2026). ``UITOTO``: a software for generating molecular diagnoses for species descriptions. *Cladistics*, 42(2): 193—205. [https://doi.org/10.1111/cla.70023](https://doi.org/10.1111/cla.70023)
-
 
 
