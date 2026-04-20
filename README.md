@@ -1,6 +1,10 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p align="center">
+<a href="https://atorresgalvis.shinyapps.io/MolecularDiagnoses/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/uitoto2.PNG" alt="" width="70%"></a>
+</p>
+
+<p align="center">
 <a href="https://atorresgalvis.shinyapps.io/MolecularDiagnoses/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/UITOTOprime.PNG" alt="" width="70%"></a>
 </p>
 
