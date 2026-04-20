@@ -15,9 +15,6 @@ knitr::opts_chunk$set(
 	```{r, echo=FALSE, fig.cap="", out.width = '50%'}
 	knitr::include_graphics("inst/app/www/img/UITOTO2.png")
 	```
-	```{r, echo=FALSE, fig.cap="", out.width = '50%'}
-	knitr::include_graphics("inst/app/www/img/UITOTOprime.png")
-	```
 
 <!-- badges: start -->
 [![Version-Number](https://img.shields.io/github/r-package/v/atorresgalvis/UITOTO?label=UITOTO (Dev))](https://github.com/atorresgalvis/UITOTO)
