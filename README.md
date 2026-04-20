@@ -14,7 +14,7 @@
 <p align=center>
 <a href="https://www.museumfuernaturkunde.berlin/en/science/research/dynamics-nature/centre-integrative-biodiversity-discovery"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/cibd_logo.jpg" alt="" width="16%"></a>
 &emsp;&emsp;
-<a href="https://www.museumfuernaturkunde.berlin/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/mfn_logo.png" alt="" width="12%"></a>
+<a href="https://www.museumfuernaturkunde.berlin/"><img src="https://github.com/atorresgalvis/UITOTO/blob/main/inst/app/www/img/mfn_logo.png" alt="" width="20%"></a>
 </p>
 
 The [**`UITOTO`**](https://github.com/atorresgalvis/UITOTO)
