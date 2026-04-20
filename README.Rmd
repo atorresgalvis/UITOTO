@@ -12,7 +12,9 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-
+	```{r, echo=FALSE, fig.cap="", out.width = '50%'}
+	knitr::include_graphics("inst/app/www/img/UITOTO2.png")
+	```
 	```{r, echo=FALSE, fig.cap="", out.width = '50%'}
 	knitr::include_graphics("inst/app/www/img/UITOTOprime.png")
 	```
