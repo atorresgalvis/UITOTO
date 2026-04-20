@@ -18,7 +18,7 @@ shinyUI(
         )
     ),
     ##-- Header ----
-    navbarPage(title = div(img(src="img/mfnLogo.jpg",
+    navbarPage(title = div(img(src="img/uitoto2.png",
                                height = "80px"), style = "padding-left:10px;"),
                id = "navbar",
                selected = "home",
