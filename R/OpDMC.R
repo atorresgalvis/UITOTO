@@ -270,7 +270,7 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 		if (max_candidate_length < minlength) {
 			stop(paste("The query taxon", qTAXA, "has fewer than", minlength, "sites eligible under the current weighted-sampling rule."))
 		}
-		maxlength <- min((minlength * 2) + 1, max_candidate_length)
+		maxlength <- min(minlength + min(5L, max(3L, minlength)), max_candidate_length)
 		n_nonunique_eligible <- sum(!(eligible_sites %in% unica))
 
 		# SIZE OF THE ACTUAL CANDIDATE SPACE
