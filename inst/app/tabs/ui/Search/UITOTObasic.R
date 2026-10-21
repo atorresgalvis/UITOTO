@@ -47,7 +47,7 @@ Search <- tabPanel(title = "Find DMCs",
                     style = "color:#91bd0d;",
                     title = "This is the number of molecular combinations that will be tested."
                 ), ":"),
-				min = 5, max = 150,
+				min = 2, max = 100,
 				value = 20, step = 1
 			),
 			sliderInput("MnLen", 
