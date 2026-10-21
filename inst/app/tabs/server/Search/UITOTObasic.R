@@ -603,7 +603,7 @@ FinalTable <- reactive({
 				)
 
 				maxlength <- min(
-					(minlength * 2) + 1,
+					minlength + min(5L, max(3L, minlength)),
 					max_candidate_length
 				)
 
