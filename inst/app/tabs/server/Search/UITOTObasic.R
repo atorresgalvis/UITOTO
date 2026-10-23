@@ -102,6 +102,7 @@ FinalTable <- reactive({
 	}
 
 	minlength <- as.integer(minlength)
+	exclusive_requested <- as.integer(exclusive)
 
 	# ========================================================
 	# INTERNAL STOPPING RULES
@@ -409,6 +410,7 @@ FinalTable <- reactive({
 
 			for (cladin in seq_len(nrow(datos))) {
 
+				exclusive <- exclusive_requested
 				avance <- round(
 					(
 						(cladin - 1) /
@@ -607,6 +609,8 @@ FinalTable <- reactive({
 					max_candidate_length
 				)
 
+				initial_maxlength <- maxlength
+
 				n_nonunique_eligible <- sum(
 					!(
 						eligible_sites %in%
@@ -686,397 +690,469 @@ FinalTable <- reactive({
 				}
 
 				# ====================================================
-				# INITIALIZE SEARCH
+				# SEARCH AT THE CURRENT EXCLUSIVITY LEVEL
 				# ====================================================
 
-				lista <- list()
-				AltrDNC <- NULL
-				minimo <- maxlength
-				soluciones <- 0L
-				iteraciones2 <- iteraciones
+				repeat {
 
-				previous_consensus <- NULL
-				consecutive_convergences <- 0L
-				stop_search <- FALSE
+					# A lower exclusive value restarts this taxon
+					# from the original maximum DMC length.
 
-				IterPosibles <- count_possible(
-					minlength,
-					maxlength
-				)
-
-				if (
-					is.finite(IterPosibles) &&
-					IterPosibles < iteraciones2
-				) {
-					iteraciones2 <- max(
-						1L,
-						round(
-							IterPosibles / 3
-						)
-					)
-				}
-
-				breakadicionales <- max(
-					1L,
-					round(
-						iteraciones2 * 0.2
-					)
-				)
-
-				veces <- 0L
-				buffi <- character(0)
-
-				seen_by_size <- setNames(
-					rep(
-						0,
-						max_candidate_length
-					),
-					as.character(
-						seq_len(
-							max_candidate_length
-						)
-					)
-				)
-
-				space_exhausted <- FALSE
-
-				# ====================================================
-				# SEARCH
-				# ====================================================
-
-				while (
-					soluciones < 2 &&
-					!stop_search &&
-					!space_exhausted
-				) {
-
-					# Increase maximum DMC length when needed.
-
-					if (veces == 6) {
-
-						if (
-							maxlength >=
-							max_candidate_length
-						) {
-
-							if (soluciones == 0) {
-
-								stop(
-									paste(
-										"No DMC was identified for",
-										qTAXA,
-										"within the specified search effort, and the maximum",
-										"available candidate length has been reached."
-									)
-								)
-							}
-
-							break
-						}
-
-						maxlength <- min(
-							maxlength + 1L,
-							max_candidate_length
-						)
-
-						minimo <- maxlength
-
-						message(
-							"None of the combinations tested are suitable to become a DMC."
-						)
-
-						message(
-							paste(
-								"The maximum length of the DMCs has been reset to",
-								maxlength
-							)
-						)
-
-						iteraciones2 <- iteraciones
-
-						IterPosibles <- count_possible(
-							minlength,
-							maxlength
-						)
-
-						if (
-							is.finite(IterPosibles) &&
-							IterPosibles < iteraciones2
-						) {
-							iteraciones2 <- max(
-								1L,
-								round(
-									IterPosibles / 3
-								)
-							)
-						}
-
-						breakadicionales <- max(
-							1L,
-							round(
-								iteraciones2 *
-								0.2
-							)
-						)
-
-						veces <- 0L
-					}
-
-					reales <- 0L
+					maxlength <- initial_maxlength
+					length_extensions <- 0L
+					retry_lower_exclusive <- FALSE
 
 					# ================================================
-					# SAMPLE CANDIDATE DMCs
+					# INITIALIZE SEARCH
+					# ================================================
+
+					lista <- list()
+					AltrDNC <- NULL
+					minimo <- maxlength
+					soluciones <- 0L
+					iteraciones2 <- iteraciones
+
+					previous_consensus <- NULL
+					consecutive_convergences <- 0L
+					stop_search <- FALSE
+
+					IterPosibles <- count_possible(
+						minlength,
+						maxlength
+					)
+
+					if (
+						is.finite(IterPosibles) &&
+						IterPosibles < iteraciones2
+					) {
+						iteraciones2 <- max(
+							1L,
+							round(
+								IterPosibles / 3
+							)
+						)
+					}
+
+					breakadicionales <- max(
+						1L,
+						round(
+							iteraciones2 * 0.2
+						)
+					)
+
+					veces <- 0L
+					buffi <- character(0)
+
+					seen_by_size <- setNames(
+						rep(
+							0,
+							max_candidate_length
+						),
+						as.character(
+							seq_len(
+								max_candidate_length
+							)
+						)
+					)
+
+					space_exhausted <- FALSE
+
+					# ================================================
+					# SEARCH
 					# ================================================
 
 					while (
-						reales < iteraciones2 &&
+						soluciones < 2 &&
 						!stop_search &&
 						!space_exhausted
 					) {
 
-						# Choose only lengths for which unseen
-						# candidates still exist.
+						# Increase maximum DMC length when needed.
 
-						if (
-							minimo <= minlength ||
-							unicount >= minlength
-						) {
+						if (veces == 6) {
 
-							size_options <- minlength
+							# After four actual length extensions,
+							# retry from scratch with exclusive - 1
+							# if no valid DMC has been recovered.
+							# If at least one valid DMC exists, keep it.
 
-						} else {
+							if (length_extensions >= 4L) {
 
-							size_options <- minlength:maxlength
-						}
+								if (soluciones == 0L) {
 
-						remaining_by_size <- vapply(
-							size_options,
-							function(k) {
-								candidate_space_for_size(k) -
-								seen_by_size[
-									as.character(k)
-								]
-							},
-							numeric(1)
-						)
+									if (exclusive > 1L) {
 
-						size_options <- size_options[
-							remaining_by_size > 0
-						]
+										exclusive <- exclusive - 1L
 
-						if (
-							length(size_options) == 0
-						) {
-							space_exhausted <- TRUE
-							break
-						}
+										message(
+											paste(
+												qTAXA,
+												": four maximum-length extensions were exhausted without a DMC. Retrying from scratch with exclusive =",
+												exclusive
+											)
+										)
 
-						size_total <- size_options[
-							sample.int(
-								length(size_options),
-								1
+										retry_lower_exclusive <- TRUE
+										break
+									}
+
+									stop(
+										paste(
+											"No DMC was identified for",
+											qTAXA,
+											"after four maximum-length extensions and exclusive = 1."
+										)
+									)
+								}
+
+								break
+							}
+
+							if (
+								maxlength >=
+								max_candidate_length
+							) {
+
+								if (soluciones == 0) {
+
+									stop(
+										paste(
+											"No DMC was identified for",
+											qTAXA,
+											"within the specified search effort, and the maximum",
+											"available candidate length has been reached."
+										)
+									)
+								}
+
+								break
+							}
+
+							maxlength <- min(
+								maxlength + 1L,
+								max_candidate_length
 							)
-						]
+
+							length_extensions <- length_extensions + 1L
+							minimo <- maxlength
+
+							message(
+								"None of the combinations tested are suitable to become a DMC."
+							)
+
+							message(
+								paste(
+									"The maximum length of the DMCs has been reset to",
+									maxlength
+								)
+							)
+
+							iteraciones2 <- iteraciones
+
+							IterPosibles <- count_possible(
+								minlength,
+								maxlength
+							)
+
+							if (
+								is.finite(IterPosibles) &&
+								IterPosibles < iteraciones2
+							) {
+								iteraciones2 <- max(
+									1L,
+									round(
+										IterPosibles / 3
+									)
+								)
+							}
+
+							breakadicionales <- max(
+								1L,
+								round(
+									iteraciones2 * 0.2
+								)
+							)
+
+							veces <- 0L
+						}
+
+						reales <- 0L
 
 						# ============================================
-						# BUILD CANDIDATE
+						# SAMPLE CANDIDATE DMCs
 						# ============================================
 
-						if (
-							unicount > 0 &&
-							unicount < minlength
+						while (
+							reales < iteraciones2 &&
+							!stop_search &&
+							!space_exhausted
 						) {
 
-							n_extra <- size_total -
-								unicount
+							# Choose only lengths for which unseen
+							# candidates still exist.
 
-							sampled <- draw_weighted_sites(
-								setdiff(
-									shared,
+							if (
+								minimo <= minlength ||
+								unicount >= minlength
+							) {
+
+								size_options <- minlength
+
+							} else {
+
+								size_options <- minlength:maxlength
+							}
+
+							remaining_by_size <- vapply(
+								size_options,
+								function(k) {
+									candidate_space_for_size(k) -
+									seen_by_size[
+										as.character(k)
+									]
+								},
+								numeric(1)
+							)
+
+							size_options <- size_options[
+								remaining_by_size > 0
+							]
+
+							if (
+								length(size_options) == 0
+							) {
+								space_exhausted <- TRUE
+								break
+							}
+
+							size_total <- size_options[
+								sample.int(
+									length(size_options),
+									1
+								)
+							]
+
+							# ========================================
+							# BUILD CANDIDATE
+							# ========================================
+
+							if (
+								unicount > 0 &&
+								unicount < minlength
+							) {
+
+								n_extra <- size_total -
+									unicount
+
+								sampled <- draw_weighted_sites(
+									setdiff(
+										shared,
+										unica
+									),
+									n_extra,
+									puntajes
+								)
+
+								if (is.null(sampled)) {
+									reales <- reales + 1L
+									next
+								}
+
+								tokey <- c(
+									sampled,
 									unica
-								),
-								n_extra,
-								puntajes
+								)
+
+							} else if (
+								unicount >= minlength
+							) {
+
+								tokey <- sample(
+									unica,
+									minlength
+								)
+
+							} else {
+
+								sampled <- draw_weighted_sites(
+									shared,
+									size_total,
+									puntajes
+								)
+
+								if (is.null(sampled)) {
+									reales <- reales + 1L
+									next
+								}
+
+								tokey <- sampled
+							}
+
+							tokey <- as.numeric(
+								tokey
 							)
 
-							if (is.null(sampled)) {
-								reales <- reales + 1L
+							tokey2 <- paste(
+								sort(tokey),
+								collapse = "-"
+							)
+
+							# ========================================
+							# DUPLICATES
+							#
+							# A repeated DMC is neither:
+							# - a new iteration
+							# - a new solution
+							# - a new consensus observation
+							# ========================================
+
+							if (tokey2 %in% buffi) {
 								next
 							}
 
-							tokey <- c(
-								sampled,
-								unica
+							buffi <- c(
+								buffi,
+								tokey2
 							)
 
-						} else if (
-							unicount >= minlength
-						) {
-
-							tokey <- sample(
-								unica,
-								minlength
-							)
-
-						} else {
-
-							sampled <- draw_weighted_sites(
-								shared,
-								size_total,
-								puntajes
-							)
-
-							if (is.null(sampled)) {
-								reales <- reales + 1L
-								next
-							}
-
-							tokey <- sampled
-						}
-
-						tokey <- as.numeric(
-							tokey
-						)
-
-						tokey2 <- paste(
-							sort(tokey),
-							collapse = "-"
-						)
-
-						# ============================================
-						# DUPLICATES
-						#
-						# A repeated DMC is neither:
-						# - a new iteration
-						# - a new solution
-						# - a new consensus observation
-						# ============================================
-
-						if (tokey2 %in% buffi) {
-							next
-						}
-
-						buffi <- c(
-							buffi,
-							tokey2
-						)
-
-						seen_by_size[
-							as.character(
-								length(tokey)
-							)
-						] <-
 							seen_by_size[
 								as.character(
 									length(tokey)
 								)
-							] + 1
+							] <-
+								seen_by_size[
+									as.character(
+										length(tokey)
+									)
+								] + 1
 
-						reales <- reales + 1L
+							reales <- reales + 1L
 
-						key <- unname(
-							sapply(
-								raw_records[clado[1]],
-								`[`,
-								tokey
-							)
-						)[, 1]
+							key <- unname(
+								sapply(
+									raw_records[clado[1]],
+									`[`,
+									tokey
+								)
+							)[, 1]
 
-						names(key) <- tokey
-
-						# ============================================
-						# TEST CANDIDATE
-						# ============================================
-
-						if (
-							is_valid_dmc(
-								key,
-								tokey,
-								raw_records,
-								clado,
-								exclusive
-							)
-						) {
-
-							if (
-								length(key) <= minimo &&
-								length(key) >= minlength
-							) {
-
-								minimo <- length(key)
-								AltrDNC <- key
-							}
-
-							lista <- lappend(
-								lista,
-								key
-							)
-
-							soluciones <- soluciones + 1L
+							names(key) <- tokey
 
 							# ========================================
-							# CONVERGENCE CHECK
-							#
-							# Only after an MnLen DMC exists.
+							# TEST CANDIDATE
 							# ========================================
 
 							if (
-								minimo <= minlength &&
-								soluciones %in%
-								conv_checkpoints
-							) {
-
-								current_dmc <- build_consensus_dmc(
-									lista,
-									AltrDNC,
+								is_valid_dmc(
+									key,
+									tokey,
 									raw_records,
 									clado,
 									exclusive
 								)
-
-								current_consensus <- consensus_signature(
-									current_dmc
-								)
+							) {
 
 								if (
-									!is.null(
-										previous_consensus
-									)
+									length(key) <= minimo &&
+									length(key) >= minlength
 								) {
 
+									minimo <- length(key)
+									AltrDNC <- key
+								}
+
+								lista <- lappend(
+									lista,
+									key
+								)
+
+								soluciones <- soluciones + 1L
+
+								# ====================================
+								# CONVERGENCE CHECK
+								#
+								# Only after an MnLen DMC exists.
+								# ====================================
+
+								if (
+									minimo <= minlength &&
+									soluciones %in%
+									conv_checkpoints
+								) {
+
+									current_dmc <- build_consensus_dmc(
+										lista,
+										AltrDNC,
+										raw_records,
+										clado,
+										exclusive
+									)
+
+									current_consensus <- consensus_signature(
+										current_dmc
+									)
+
 									if (
-										identical(
-											current_consensus,
+										!is.null(
 											previous_consensus
 										)
 									) {
 
-										consecutive_convergences <-
-											consecutive_convergences +
-											1L
+										if (
+											identical(
+												current_consensus,
+												previous_consensus
+											)
+										) {
 
-									} else {
+											consecutive_convergences <-
+												consecutive_convergences +
+												1L
 
-										consecutive_convergences <-
-											0L
+										} else {
+
+											consecutive_convergences <-
+												0L
+										}
+									}
+
+									previous_consensus <-
+										current_consensus
+
+									if (
+										consecutive_convergences >=
+										conv_required
+									) {
+
+										message(
+											paste(
+												"Consensus DMC stabilized after",
+												conv_required,
+												"consecutive convergence hits. Stopping at",
+												soluciones,
+												"optimal DMCs."
+											)
+										)
+
+										stop_search <- TRUE
+										break
 									}
 								}
 
-								previous_consensus <-
-									current_consensus
+								# ====================================
+								# INTERNAL HARD CAP
+								# ====================================
 
 								if (
-									consecutive_convergences >=
-									conv_required
+									soluciones >=
+									max_solutions
 								) {
 
 									message(
 										paste(
-											"Consensus DMC stabilized after",
-											conv_required,
-											"consecutive convergence hits. Stopping at",
-											soluciones,
-											"optimal DMCs."
+											"Maximum of",
+											max_solutions,
+											"optimal DMCs reached. Stopping search."
 										)
 									)
 
@@ -1084,43 +1160,28 @@ FinalTable <- reactive({
 									break
 								}
 							}
+						}
 
-							# ========================================
-							# INTERNAL HARD CAP
-							# ========================================
+						if (space_exhausted) {
+							break
+						}
 
-							if (
-								soluciones >=
-								max_solutions
-							) {
+						veces <- veces + 1L
 
-								message(
-									paste(
-										"Maximum of",
-										max_solutions,
-										"optimal DMCs reached. Stopping search."
-									)
-								)
-
-								stop_search <- TRUE
-								break
-							}
+						if (
+							soluciones < 2 &&
+							!stop_search
+						) {
+							iteraciones2 <-
+								breakadicionales
 						}
 					}
 
-					if (space_exhausted) {
-						break
+					if (retry_lower_exclusive) {
+						next
 					}
 
-					veces <- veces + 1L
-
-					if (
-						soluciones < 2 &&
-						!stop_search
-					) {
-						iteraciones2 <-
-							breakadicionales
-					}
+					break
 				}
 
 				if (
@@ -1133,6 +1194,29 @@ FinalTable <- reactive({
 							qTAXA,
 							"."
 						)
+					)
+				}
+
+				if (exclusive < exclusive_requested) {
+
+					fallback_message <- paste(
+						qTAXA,
+						": the final DMC was recovered with exclusive =",
+						exclusive,
+						"instead of the requested exclusive =",
+						exclusive_requested,
+						"."
+					)
+
+					warning(
+						fallback_message,
+						call. = FALSE
+					)
+
+					shiny::showNotification(
+						fallback_message,
+						type = "warning",
+						duration = 10
 					)
 				}
 
