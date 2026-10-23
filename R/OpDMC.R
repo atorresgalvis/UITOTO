@@ -1,6 +1,6 @@
 ## Title: OpDMC
 ## Version: 0.2-0
-## Date: 2026-10-19
+## Date: 2026-10-23
 ## Author: Ambrosio Torres (Researcher [Ctr. Integr. Biodivers. Discov. - Museum für Naturkunde, Berlin, Germany)
 ## Maintainer: Ambrosio Torres <atorresgalvis@gmail.com> <Ambrosio.TorresGalvis@mfn.berlin>
 ## Depends: R version (>= 4.2.2). Package seqinr (4.2-23)
@@ -36,6 +36,7 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 	}
 	iteraciones <- as.integer(iter)
 	minlength <- as.integer(MnLen)
+	exclusive_requested <- as.integer(exclusive)
 	refinStrength <- RefStrength
 
 	# INTERNAL STOPPING RULES
@@ -207,6 +208,7 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 	TablaFinal <- NULL
 	message("Identifying possible DMCs for the species:")
 	for (cladin in seq_len(nrow(datos))) {
+		exclusive <- exclusive_requested
 		avance <- round(((cladin - 1) / nrow(datos)) * 100)
 		qTAXA <- as.character(datos[cladin, 1])
 		clado <- which(grepl(qTAXA, attributes(raw_records)$names))
@@ -271,6 +273,7 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 			stop(paste("The query taxon", qTAXA, "has fewer than", minlength, "sites eligible under the current weighted-sampling rule."))
 		}
 		maxlength <- min(minlength + min(5L, max(3L, minlength)), max_candidate_length)
+		initial_maxlength <- maxlength
 		n_nonunique_eligible <- sum(!(eligible_sites %in% unica))
 
 		# SIZE OF THE ACTUAL CANDIDATE SPACE
@@ -306,7 +309,15 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 			sum(vapply(minlen:maxlen, candidate_space_for_size, numeric(1)))
 		}
 
-		# INITIALIZE SEARCH
+		# SEARCH AT THE CURRENT EXCLUSIVITY LEVEL
+
+		repeat {
+			# A lower exclusive value restarts this taxon from scratch.
+			maxlength <- initial_maxlength
+			length_extensions <- 0L
+			retry_lower_exclusive <- FALSE
+
+			# INITIALIZE SEARCH
 
 		lista <- list()
 		AltrDNC <- NULL
@@ -333,6 +344,26 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 			# Increase maximum DMC length when needed
 
 			if (veces == 6) {
+
+				# Do not allow maximum DMC length to grow indefinitely.
+				# After four actual length extensions, a taxon with no
+				# valid DMC is retried from scratch with exclusive - 1.
+				# If at least one valid DMC already exists, keep it rather
+				# than weakening the requested exclusivity.
+
+				if (length_extensions >= 4L) {
+					if (soluciones == 0L) {
+						if (exclusive > 1L) {
+							exclusive <- exclusive - 1L
+							message(paste(qTAXA, ": four maximum-length extensions were exhausted without a DMC. Retrying from scratch with exclusive =", exclusive))
+							retry_lower_exclusive <- TRUE
+							break
+						}
+						stop(paste("No DMC was identified for", qTAXA, "after four maximum-length extensions and exclusive = 1."))
+					}
+					break
+				}
+
 				if (maxlength >= max_candidate_length) {
 					if (soluciones == 0) {
 						stop(paste("No DMC was identified for", qTAXA, "within the specified search effort, and the maximum", "available candidate length has been reached."))
@@ -340,6 +371,7 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 					break
 				}
 				maxlength <- min(maxlength + 1L, max_candidate_length)
+				length_extensions <- length_extensions + 1L
 				minimo <- maxlength
 				message("None of the combinations tested are suitable to become a DMC.")
 				message(paste("The maximum length of the DMCs has been reset to", maxlength))
@@ -481,8 +513,19 @@ OpDMC <- function(FastaFile, species, iter = 20000,
 				iteraciones2 <- breakadicionales
 			}
 		}
+
+			if (retry_lower_exclusive) {
+				next
+			}
+			break
+		}
+
 		if (length(lista) == 0 || is.null(AltrDNC)) {
 			stop(paste("No valid DMC was recovered for", qTAXA, "."))
+		}
+
+		if (exclusive < exclusive_requested) {
+			warning(paste(qTAXA, ": the final DMC was recovered with exclusive =", exclusive, "instead of the requested exclusive =", exclusive_requested, "."), call. = FALSE)
 		}
 
 		# REFINEMENT
